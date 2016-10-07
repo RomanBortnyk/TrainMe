@@ -20,7 +20,6 @@ public class RegistrationServlet extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String birthdayDate = request.getParameter("birthdayDate");
@@ -28,8 +27,6 @@ public class RegistrationServlet extends HttpServlet{
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String userType = request.getParameter("optionsRadios");
-
-//        File file = request.getParameter("image");
 
         UserDao userDao = new UserDao();
 

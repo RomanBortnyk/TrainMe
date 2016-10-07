@@ -20,11 +20,7 @@ public class LogoutServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-
-//        response.setContentType("text/html");
         HttpSession session = request.getSession(false);
-        // session.setAttribute("user", null);
         session.removeAttribute("currentSessionUser");
 
         RequestDispatcher rd = request.getRequestDispatcher("index.html");

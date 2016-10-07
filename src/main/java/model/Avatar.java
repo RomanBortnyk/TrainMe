@@ -1,8 +1,5 @@
 package model;
 
-
-
-
 import javax.persistence.*;
 import java.io.File;
 

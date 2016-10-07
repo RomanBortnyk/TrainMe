@@ -1,0 +1,17 @@
+.list-group-item{
+
+    border: none;
+    background-color: inherit;
+}
+
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+.avatar{
+
+    padding-bottom: 5%;
+}
+

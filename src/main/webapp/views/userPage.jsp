@@ -1,4 +1,4 @@
-<%@ page import="model.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: romab
   Date: 9/29/16
@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>User page</title>
@@ -23,7 +25,6 @@
 <body>
 <%@ page isELIgnored="false" %>
 <jsp:useBean id="currentSessionUser" class="model.User" scope="session"></jsp:useBean>
-<%--<%User user = (User) session.getAttribute("currentSessionUser");%>--%>
 
 <%@ include file="header.html" %>
 
@@ -57,9 +58,6 @@
                 </ul>
             </div>
 
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
         </div>
 
         <div class="col-lg-8">
@@ -75,46 +73,23 @@
 
             <div class="col-lg-12"> <h3>Feedbacks</h3> </div>
 
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="well">
-                        <p>John</p>
-                        <img src="" class="img-circle" height="55" width="55" alt="Avatar">
+            <c:forEach var="feedback" items="${usersFeedbacks}" >
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="well">
+                            <p>${userDao.read(feedback.authorId()).getLogin()}</p>
+                            <img src="" class="img-circle" height="55" width="55" alt="Avatar">
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="well">
+                            <p id="feedbackText">${feedback.getText()}</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
-                    <div class="well">
-                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="well">
-                        <p>Bo</p>
-                        <img src="" class="img-circle" height="55" width="55" alt="Avatar">
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="well">
-                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
 
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="well">
-                        <p>Anja</p>
-                        <img src="" class="img-circle" height="55" width="55" alt="Avatar">
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="well">
-                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
     </div>

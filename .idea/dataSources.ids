@@ -136,7 +136,7 @@
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="36" parent="6" name="description">
+      <column id="36" parent="6" name="text">
         <mandatory>1</mandatory>
         <data-type>text</data-type>
       </column>

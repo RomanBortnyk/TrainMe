@@ -99,7 +99,7 @@ public abstract class AbstractDao implements GenericDao,Serializable{
     }
 
     public List readAll(Class clazz) {
-        List items= null;
+        List items = null;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();

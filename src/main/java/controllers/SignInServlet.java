@@ -1,4 +1,5 @@
 package controllers;
+import dao.implementation.FeedbackDao;
 import model.User;
 import dao.implementation.UserDao;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by romab on 10/1/16.
@@ -30,6 +32,10 @@ public class SignInServlet extends HttpServlet{
 
                 HttpSession session = request.getSession(true);
                 session.setAttribute("currentSessionUser", user);
+                FeedbackDao feedbackDao = new FeedbackDao();
+                List feedbacks = feedbackDao.getUsersFeedbacks(user.getId());
+                session.setAttribute("usersFeedbacks", feedbacks);
+                session.setAttribute("userDao", userDAO);
                 RequestDispatcher rd = request.getRequestDispatcher("views/userPage.jsp");
                 rd.forward(request,response);
 //                response.sendRedirect("views/userPage.jsp");

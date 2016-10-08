@@ -47,7 +47,6 @@ public class SignInServlet extends HttpServlet{
 
                 RequestDispatcher rd = request.getRequestDispatcher("views/userPage.jsp");
                 rd.forward(request,response);
-//                response.sendRedirect("views/userPage.jsp");
 
             }else {
                 request.setAttribute("incorrectPass", true);

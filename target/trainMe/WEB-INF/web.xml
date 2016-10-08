@@ -4,7 +4,12 @@
 <!--TODO: add servlet 3.0 support-->
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-
+    
+  <servlet>
+      <servlet-name>imageServlet</servlet-name>
+      <servlet-class>controllers.ImageServlet</servlet-class>
+  </servlet>  
+    
   <servlet>
     <servlet-name>signInServlet</servlet-name>
     <servlet-class>controllers.SignInServlet</servlet-class>
@@ -29,7 +34,11 @@
     <servlet-name>TestServlet</servlet-name>
     <servlet-class>controllers.TestServlet</servlet-class>
   </servlet>
-
+    
+  <servlet-mapping>
+      <servlet-name>imageServlet</servlet-name>
+      <url-pattern>/image/*</url-pattern>
+  </servlet-mapping>  
 
   <servlet-mapping>
     <servlet-name>registrationServlet</servlet-name>

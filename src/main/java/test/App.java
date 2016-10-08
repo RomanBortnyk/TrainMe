@@ -33,17 +33,31 @@ public class App
 //        Avatar avatar = new Avatar();
 //        avatar.setImage(bFile);
 
-        File weightlifting = new File("/home/romab/Desktop/weightlifting.png");
-        File swimming = new File("/home/romab/Desktop/swimming.png");
-        File baseball = new File("/home/romab/Desktop/baseball.png");
-        File basketball = new File("/home/romab/Desktop/basketball.png");
+//        AvatarDao avatarDao = new AvatarDao();
+
+
+//        File hipsta1 = new File("/home/romab/Desktop/hipsta1.png");
+//        File hipsta2 = new File("/home/romab/Desktop/hipsta2.png");
+//        File hipsta3 = new File("/home/romab/Desktop/hipsta3.png");
+//        File hipsta4 = new File("/home/romab/Desktop/hipsta4.png");
+//
+//        avatarDao.createFromFile(hipsta1);
+//        avatarDao.createFromFile(hipsta2);
+//        avatarDao.createFromFile(hipsta3);
+//        avatarDao.createFromFile(hipsta4);
 
         DisciplineDao disciplineDao = new DisciplineDao();
+//
 
-        disciplineDao.createFromFile("weightlifting", weightlifting);
-        disciplineDao.createFromFile("swimming", swimming);
-        disciplineDao.createFromFile("baseball", baseball);
-        disciplineDao.createFromFile("basketball", basketball);
+        File n1 = new File("/home/romab/Desktop/kickboxing.png");
+        File n2 = new File("/home/romab/Desktop/bodybuilding.png");
+
+        disciplineDao.createFromFile("kickboxing", n1);
+        disciplineDao.createFromFile("bodybuilding", n2);
+//        disciplineDao.createFromFile("weightlifting", weightlifting);
+//        disciplineDao.createFromFile("swimming", swimming);
+//        disciplineDao.createFromFile("baseball", baseball);
+//        disciplineDao.createFromFile("basketball", basketball);
 
 
 

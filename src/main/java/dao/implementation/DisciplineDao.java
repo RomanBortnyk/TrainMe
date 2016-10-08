@@ -1,8 +1,14 @@
 package dao.implementation;//package dao.implementation;
 
+import model.Avatar;
 import model.Discipline;
 import dao.interfaces.AbstractDao;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import persistence.HibernateUtil;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 /**
@@ -31,6 +37,28 @@ public class DisciplineDao extends AbstractDao {
 
     public List readAll() {
         return super.readAll(Discipline.class);
+    }
+
+
+    public Discipline createFromFile(String name, File image){
+
+            byte[] bFile = new byte[(int) image.length()];
+
+            try {
+                FileInputStream fileInputStream = new FileInputStream(image);
+                fileInputStream.read(bFile);
+                fileInputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Discipline discipline = new Discipline();
+            discipline.setName(name);
+            discipline.setIcon(bFile);
+
+            return (Discipline) super.create(discipline);
+
+
     }
 
 }

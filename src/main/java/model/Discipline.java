@@ -13,6 +13,15 @@ public class Discipline implements Item {
     private String name;
     private byte[] icon;
 
+    public Discipline (){
+
+    }
+
+    public Discipline(String name, byte[] icon) {
+        this.name = name;
+        this.icon = icon;
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {

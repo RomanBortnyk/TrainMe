@@ -71,4 +71,33 @@ public class DisciplineUserLinkDao extends AbstractDao{
         if (newUser == null) return false; else return true;
 
     }
+
+    public List getUsersDisciplineLinks (int userId){
+
+        List result = null;
+
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query query = session.createQuery("from DisciplineUserLink where user.id =:userId");
+            query.setInteger("userId", userId);
+            result = query.list();
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally {
+            if(session.isOpen()){
+                System.out.println("Closing session");
+                session.close();
+            }
+        }
+
+        return result;
+
+    }
+
+
+
 }

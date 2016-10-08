@@ -50,11 +50,11 @@
             <div class="well">
                 <p>${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}</p>
                 <ul class="list-group">
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
+                    <c:forEach var="link" items="${disciplineLinks}">
+                        <li class="list-group-item"><img src=""alt="icon">
+                            ${link.getDiscipline().getName()}
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
@@ -88,7 +88,6 @@
                     </div>
                 </div>
             </c:forEach>
-
 
         </div>
 

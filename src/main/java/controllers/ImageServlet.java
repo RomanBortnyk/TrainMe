@@ -6,15 +6,16 @@ import model.Discipline;
 import model.User;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
  * Created by romab on 10/9/16.
  */
+@WebServlet("/image/*")
 public class ImageServlet extends HttpServlet {
 
 
@@ -38,11 +39,6 @@ public class ImageServlet extends HttpServlet {
             response.setContentLength(content.length);
             response.getOutputStream().write(content);
         }
-
-
-
-        System.out.println(request.getPathInfo());
-
 
     }
 }

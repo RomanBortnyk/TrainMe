@@ -26,7 +26,7 @@
 <%@ page isELIgnored="false" %>
 <jsp:useBean id="currentSessionUser" class="model.User" scope="session"></jsp:useBean>
 
-<jsp:include page="header.html" />
+<%@ include file="header.html"%>
 
 <div class="container text-center">
     <div class="row">

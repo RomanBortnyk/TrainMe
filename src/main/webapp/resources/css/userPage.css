@@ -1,3 +1,6 @@
+.navbar{
+	border-radius: 0;
+}
 .list-group-item{
 
     border: none;
@@ -14,8 +17,37 @@ footer {
 
     padding-bottom: 5%;
 }
-
-#feedbackText{
-    text-align: left;
+.outer_form {
+    background: rgb(254, 255, 253);
+    background: rgba(255, 255, 255, 0.7);
 }
-
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events:all;
+}
+.interests-section{
+	text-align: left;
+	margin: 0 10px;
+}
+.interests-section .checkbox{
+	text-align: center;
+}
+.interests-section .checkbox label input{
+	position: absolute;
+}

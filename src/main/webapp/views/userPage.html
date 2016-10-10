@@ -14,119 +14,205 @@
 
 </head>
 <body>
+    <header class="navbar navbar-inverse">
+        <div class="container-fluid">
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Logo</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Messages</a></li>
-                <li><a href="#"><i class="fa fa-users"></i> My clients/My coaches</a> </li>
-                <li><a href="#"> <i class="fa fa-search"></i> Search </a> </li>
-                <li><a href="../index.html"> <i class="fa fa-sign-out"></i> Log out</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
-            </ul>
-
-        </div>
-    </div>
-</nav>
-
-<div class="container text-center">
-    <div class="row">
-        <div class="col-lg-4 well">
-            <div class="well">
-
-                <div class="col-lg-12 avatar">
-                    <img id="avatar" src="../resources/images/image.png"
-                         width="280" height="280" class="img-circle"  alt="Avatar">
-                </div>
-
-                <button id="addButton" type="button" class=" btn btn-default btn-sm">Add/Change photo</button>
-
-                <p></p>
-                <p>first name</p>
-                <p>last name</p>
-                <p>birthday date</p>
-                <p>user type</p>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Logo</a>
             </div>
-            <div class="well">
-                <p><a href="#">Interests</a></p>
-                <ul class="list-group">
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
-                    <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Messages</a></li>
+                    <li><a href="#"><i class="fa fa-users"></i> My clients/My coaches</a> </li>
+                    <li><a href="#"> <i class="fa fa-search"></i> Search </a> </li>
+                    <li><a href="../index.html"> <i class="fa fa-sign-out"></i> Log out</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
                 </ul>
             </div>
-
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
         </div>
+    </header>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="well">
+                    <div class="col-lg-12 avatar">
+                        <img id="avatar" src="../resources/images/image.png"
+                        width="280" height="280" class="img-circle" alt="Avatar">
+                    </div>
+                    <button type="button" class=" btn btn-default btn-sm" data-toggle="modal" data-target="#changePhoto">Add/Change photo</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="changePhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="vertical-alignment-helper">
+                            <div class="modal-dialog vertical-align-center">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">Change photo</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <button class="btn btn-default">Browse</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <p>first name</p>
+                    <p>last name</p>
+                    <p>birthday date</p>
+                    <p>user type</p>
+                </div>
+                <div class="well">
+                    <p><a href="#">Interests</a></p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
+                        <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
+                        <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
+                        <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
+                        <li class="list-group-item"><img src=""alt="icon"> diccipline</li>
+                    </ul>
+                    <button type="button" style="margin-bottom: 15px;" class="btn btn-default btn-sm" data-toggle="modal" data-target="#changeInterests">Change interests</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="changeInterests" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="vertical-alignment-helper">
+                            <div class="modal-dialog vertical-align-center">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">Change interests</h4>
+                                    </div>
+                                    <div class="modal-body interests-section">
+                                        <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="checkbox-inline">
+                                                  <label><input type="checkbox" value="">fitness</label>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                              <label><input type="checkbox" value="">box</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                              <label><input type="checkbox" value="">karate</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="checkbox-inline">
+                                                  <label><input type="checkbox" value="">football</label>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                              <label><input type="checkbox" value="">sambo</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                              <label><input type="checkbox" value="">Option 1</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="checkbox-inline">
+                                                  <label><input type="checkbox" value="">Option 1</label>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                              <label><input type="checkbox" value="">Option 1</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                              <label><input type="checkbox" value="">Option 1</label>
+                                          </div>
+                                      </div>
+                                  </div>
 
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default text-left">
-                        <div class="panel-body">
-                            <p>some user decsription</p>
+
+
+
+                              </div>
+                              <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="col-lg-12"> Feedbacks </div>
 
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="well">
-                        <p>John</p>
-                        <img src="" class="img-circle" height="55" width="55" alt="Avatar">
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="well">
-                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="well">
-                        <p>Bo</p>
-                        <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="well">
-                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="well">
-                        <p>Anja</p>
-                        <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="well">
-                        <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default text-left">
+                    <div class="panel-body">
+                        <p>some user decsription</p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <div class="col-lg-12">
+            <h3>Feedbacks</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="well">
+                    <p>John</p>
+                    <img src="" class="img-circle" height="55" width="55" alt="Avatar">
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="well">
+                    <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="well">
+                    <p>Bo</p>
+                    <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="well">
+                    <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="well">
+                    <p>Anja</p>
+                    <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="well">
+                    <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+</div>
 </div>
 
 <footer class="container-fluid text-center">

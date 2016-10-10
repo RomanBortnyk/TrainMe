@@ -12,15 +12,16 @@ public class Feedback implements Item {
     private int id;
     private User author;
     private User user;
-    private String description;
+    private String text;
 
     public Feedback(){
 
     }
 
-    public Feedback(User author, User user){
+    public Feedback(User author, User user, String text){
         this.author = author;
         this.user = user;
+        this.text = text;
     }
 
     @ManyToOne
@@ -51,17 +52,23 @@ public class Feedback implements Item {
     }
 
 
+    public int authorId (){
+        return this.author.getId();
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
+
     @Basic
-    @Column(name = "description")
-    public String getDescription() {
-        return description;
+    @Column(name = "text")
+    public String getText() {
+        return text;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setText(String text) {
+        this.text = text;
     }
+
 }

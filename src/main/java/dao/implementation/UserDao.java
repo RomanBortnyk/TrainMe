@@ -80,7 +80,6 @@ public class UserDao extends AbstractDao {
 
         if (newUser != null) return newUser; else return null;
 
-
     }
 
 
@@ -97,7 +96,7 @@ public class UserDao extends AbstractDao {
         User newUser = (User)q.uniqueResult();
 
         session.getTransaction().commit();
-            if (newUser == null) return false; else return true;
+        if (newUser == null) return false; else return true;
 
     }
 

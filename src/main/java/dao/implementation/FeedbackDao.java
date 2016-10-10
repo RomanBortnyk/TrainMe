@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import persistence.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,6 +76,30 @@ public class FeedbackDao extends AbstractDao {
 
         if (newDeal == null) return false;
             else return true;
+    }
 
+    public List getUsersFeedbacks (int userId){
+        List result = null;
+
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query query = session.createQuery("from Feedback where user.id =:userId");
+            query.setInteger("userId", userId);
+            result = query.list();
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally {
+            if(session.isOpen()){
+                System.out.println("Closing session");
+                session.close();
+            }
+        }
+
+
+        return result;
     }
 }

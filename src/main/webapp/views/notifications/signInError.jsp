@@ -16,7 +16,7 @@
      <%
          String message ="";
         if ( request.getAttribute("incorrectPass")!=null) message = "Password incorect";
-         if (request.getAttribute("unexistLogin") != null) message = "Login is not exist";
+         if (request.getAttribute("unexistLogin") != null) message = "Login does not exist";
 
      %>
 

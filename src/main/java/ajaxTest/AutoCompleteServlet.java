@@ -54,15 +54,8 @@ public class AutoCompleteServlet extends HttpServlet {
                 if ( current.toLowerCase().startsWith(name)){
                     // targetId matches first name
 
-
                     result.add(current);
                 }
-
-                                // targetId matches last name
-//                                tempName.toLowerCase().startsWith(name) ||
-//                                // targetId matches full name
-//                                tempName.toLowerCase().concat(" ")
-//                                        .concat(tempName.toLowerCase()).startsWith(targetId))
 
             }
 

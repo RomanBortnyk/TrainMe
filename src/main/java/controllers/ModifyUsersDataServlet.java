@@ -11,7 +11,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 
 
-
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -37,52 +37,12 @@ public class ModifyUsersDataServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String pathParts[] = request.getPathInfo().split("/");
-        HttpSession session;
+        HttpSession session = request.getSession();
+        User currentUser = (User)session.getAttribute("currentSessionUser");
 
         if (pathParts[1].equals("avatar")) {
 
-            FileItemFactory factory = new DiskFileItemFactory();
-            ServletFileUpload upload = new ServletFileUpload(factory);
-            File uploadedFile = null;
-
-            try {
-
-                List items = upload.parseRequest(request);
-                Iterator iterator = items.iterator();
-
-                while (iterator.hasNext()) {
-
-                    FileItem item = (FileItem) iterator.next();
-
-                    if (!item.isFormField()) {
-                        String fileName = item.getName();
-
-                        File path = new File("/home/romab/Desktop");
-
-                        if (!path.exists()) {
-                            boolean status = path.mkdirs();
-                        }
-
-                        uploadedFile = new File(path + "/" + fileName);
-                        System.out.println(uploadedFile.getAbsolutePath());
-                        item.write(uploadedFile);
-                    }
-                }
-
-
-                Avatar newAvatar = new Avatar(uploadedFile);
-                session = request.getSession();
-                User currentUser = (User)session.getAttribute("currentSessionUser");
-                UserDao userDao = new UserDao();
-                userDao.updateAvatar(currentUser,newAvatar);
-
-                uploadedFile.delete();
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            updateAvatar(request,currentUser);
 
         }
 
@@ -100,7 +60,46 @@ public class ModifyUsersDataServlet extends HttpServlet {
         }
 
         response.sendRedirect("../../views/userPage.jsp");
+    }
 
+    public void updateAvatar (HttpServletRequest request, User currentUser){
+
+        FileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        File uploadedFile = null;
+
+        try {
+
+            List items = upload.parseRequest(request);
+            Iterator iterator = items.iterator();
+
+            while (iterator.hasNext()) {
+
+                FileItem item = (FileItem) iterator.next();
+
+                if (!item.isFormField()) {
+                    String fileName = item.getName();
+
+                    File path = new File("../temporary");
+
+                    if (!path.exists()) {
+                        boolean status = path.mkdirs();
+                    }
+
+                    uploadedFile = new File(path + "/" + fileName);
+                    String s = uploadedFile.getAbsolutePath();
+                    System.out.println(uploadedFile.getAbsolutePath());
+                    item.write(uploadedFile);
+                }
+            }
+            Avatar newAvatar = new Avatar(uploadedFile);
+            UserDao userDao = new UserDao();
+            userDao.updateAvatar(currentUser,newAvatar);
+            uploadedFile.delete();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

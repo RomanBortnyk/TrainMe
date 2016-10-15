@@ -35,7 +35,7 @@
 
                 <div class="col-lg-12 avatar">
                     <img id="avatar" src="/image/avatar/${currentSessionUser.id}"
-                         width="280" height="280" class="img-circle"  alt="Avatar">
+                         width="280" height="280" class="img-circle" alt="Avatar">
                 </div>
 
                 <button type="button" id="addButton" class=" btn btn-default btn-sm" data-toggle="modal" data-target="#changePhoto">Change avatar</button>
@@ -50,10 +50,13 @@
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                                     </button>
                                     <h4 class="modal-title" id="myModalLabel">Change photo</h4>
+                                    <h6 class="modal-title" id="">
+                                        image size should be less than 2 MB
+                                    </h6>
                                 </div>
 
                                 <div class="modal-body">
-                                    <form action="/modify/avatar" enctype="multipart/form-data" method="post" >
+                                    <form action="/modify/avatar" enctype="multipart/form-data" method="post">
                                         <input type="file" name="newAvatar" style="display: inline-block;">
                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                     </form>
@@ -73,7 +76,7 @@
 
             </div>
             <div class="well">
-                <p>${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}</p>
+                <h4>${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}</h4>
                 <ul class="list-group">
                     <c:forEach var="link" items="${disciplineLinks}">
                         <li class="list-group-item"><img src="/image/icon/${link.getDiscipline().getId()}" height="35" width="35" alt="icon">
@@ -84,7 +87,7 @@
             </div>
 
         </div>
-        <%--TODO: add filter to userPage --%>
+
         <div class="col-lg-8">
             <div class="row">
                 <div class="col-lg-12">

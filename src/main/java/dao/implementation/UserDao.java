@@ -45,13 +45,12 @@ public class UserDao extends AbstractDao {
     public void updateAvatar (User user, Avatar newAvatar){
 
         Avatar currentAvatar = user.getAvatar();
-
+        AvatarDao avatarDao = new AvatarDao();
         if (currentAvatar == null){
-            user.setAvatar(newAvatar);
+            user.setAvatar(avatarDao.create(newAvatar));
             update(user);
         }else{
 
-            AvatarDao avatarDao = new AvatarDao();
             currentAvatar = avatarDao.read(currentAvatar.getId());
             currentAvatar.setImage(newAvatar.getImage());
 

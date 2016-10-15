@@ -52,6 +52,14 @@ public class AvatarDao extends AbstractDao {
         return (Avatar) super.create(avatar);
     }
 
+    public Avatar createFromByteArray (byte[] bFile){
+
+        Avatar avatar = new Avatar();
+        avatar.setImage(bFile);
+
+        return (Avatar) super.create(avatar);
+    }
+
 
 //        recieve image from DB
     public void putAvatarToFile (int id, String path){

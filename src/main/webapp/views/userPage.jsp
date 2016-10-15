@@ -38,7 +38,31 @@
                          width="280" height="280" class="img-circle"  alt="Avatar">
                 </div>
 
-                <button id="addButton" type="button" class=" btn btn-default btn-sm">Change photo</button>
+                <button type="button" id="addButton" class=" btn btn-default btn-sm" data-toggle="modal" data-target="#changePhoto">Change avatar</button>
+                <!-- Modal -->
+                <div class="modal fade" id="changePhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="vertical-alignment-helper">
+                        <div class="modal-dialog vertical-align-center">
+
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Change photo</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form action="/modify/avatar" enctype="multipart/form-data" method="post" >
+                                        <input type="file" name="newAvatar" style="display: inline-block;">
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                 <p></p>

@@ -1,6 +1,7 @@
 package dao.implementation;
 
 import dao.interfaces.AbstractDao;
+import model.Avatar;
 import model.Item;
 import model.User;
 import org.hibernate.Query;
@@ -8,6 +9,7 @@ import org.hibernate.Session;
 import persistence.HibernateUtil;
 
 import javax.persistence.UniqueConstraint;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -38,6 +40,24 @@ public class UserDao extends AbstractDao {
 
     public User update(User user) {
         return (User) super.update(user);
+    }
+
+    public void updateAvatar (User user, Avatar newAvatar){
+
+        Avatar currentAvatar = user.getAvatar();
+
+        if (currentAvatar == null){
+            user.setAvatar(newAvatar);
+            update(user);
+        }else{
+
+            AvatarDao avatarDao = new AvatarDao();
+            currentAvatar = avatarDao.read(currentAvatar.getId());
+            currentAvatar.setImage(newAvatar.getImage());
+
+            avatarDao.update(currentAvatar);
+        }
+
     }
 
 

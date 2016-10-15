@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.io.File;
+import java.io.FileInputStream;
 
 /**
  * Created by romab on 10/2/16.
@@ -19,6 +20,10 @@ public class Avatar implements Item {
 
     public Avatar(byte[] image) {
         this.image = image;
+    }
+
+    public Avatar(File image) {
+        setImage(image);
     }
 
     @Id
@@ -42,6 +47,11 @@ public class Avatar implements Item {
     }
 
 
+    public void setImage (File file){
 
+        byte[] bFile = new byte[(int) file.length()];
+        this.image = bFile;
+
+    }
 
 }

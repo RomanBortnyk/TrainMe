@@ -28,6 +28,7 @@ public class ImageServlet extends HttpServlet {
             User user = userDao.read(Integer.valueOf(pathParts[2]));
 
             byte[] content = user.getAvatar().getImage();
+            if (content == null) return;
             response.setContentLength(content.length);
             response.getOutputStream().write(content);
 

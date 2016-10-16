@@ -1,6 +1,7 @@
 package dao.implementation;
 
 import dao.interfaces.AbstractDao;
+import model.Avatar;
 import model.Item;
 import model.User;
 import org.hibernate.Query;
@@ -8,6 +9,7 @@ import org.hibernate.Session;
 import persistence.HibernateUtil;
 
 import javax.persistence.UniqueConstraint;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -40,6 +42,22 @@ public class UserDao extends AbstractDao {
         return (User) super.update(user);
     }
 
+    public void updateAvatar (User user, Avatar newAvatar){
+
+        Avatar currentAvatar = user.getAvatar();
+        AvatarDao avatarDao = new AvatarDao();
+        if (currentAvatar == null){
+            user.setAvatar(avatarDao.create(newAvatar));
+            update(user);
+        }else{
+
+            currentAvatar = avatarDao.read(currentAvatar.getId());
+            currentAvatar.setImage(newAvatar.getImage());
+
+            avatarDao.update(currentAvatar);
+        }
+
+    }
 
     public void delete(User user) {
         if (isExist(user)) {
@@ -50,7 +68,6 @@ public class UserDao extends AbstractDao {
             System.out.println("you try delete user which does not exist");
         }
     }
-
 
     public List readAll() {
         return super.readAll(User.class);
@@ -81,7 +98,6 @@ public class UserDao extends AbstractDao {
         if (newUser != null) return newUser; else return null;
 
     }
-
 
     public boolean isExist (User user){
         if (user == null) return false;

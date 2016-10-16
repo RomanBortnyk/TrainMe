@@ -59,7 +59,6 @@ public class UserDao extends AbstractDao {
 
     }
 
-
     public void delete(User user) {
         if (isExist(user)) {
             super.delete(user);
@@ -69,7 +68,6 @@ public class UserDao extends AbstractDao {
             System.out.println("you try delete user which does not exist");
         }
     }
-
 
     public List readAll() {
         return super.readAll(User.class);
@@ -100,7 +98,6 @@ public class UserDao extends AbstractDao {
         if (newUser != null) return newUser; else return null;
 
     }
-
 
     public boolean isExist (User user){
         if (user == null) return false;

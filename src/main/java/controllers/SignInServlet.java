@@ -49,9 +49,6 @@ public class SignInServlet extends HttpServlet{
 
                 response.sendRedirect("views/userPage.jsp");
 
-//                RequestDispatcher rd = request.getRequestDispatcher("views/userPage.jsp");
-//                rd.forward(request,response);
-
             }else {
                 request.setAttribute("incorrectPass", true);
                 rd2.forward(request,response);
@@ -64,7 +61,5 @@ public class SignInServlet extends HttpServlet{
 
 
     }
-
-
 
 }

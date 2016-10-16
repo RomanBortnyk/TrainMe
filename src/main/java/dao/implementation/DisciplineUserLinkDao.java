@@ -1,5 +1,6 @@
 package dao.implementation;;
 
+import model.Discipline;
 import model.DisciplineUserLink;
 import model.User;
 import dao.interfaces.AbstractDao;
@@ -98,6 +99,31 @@ public class DisciplineUserLinkDao extends AbstractDao{
 
     }
 
+    public DisciplineUserLink read (User user, Discipline discipline){
+
+        Session session = null;
+        DisciplineUserLink result = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query query = session.createQuery("from DisciplineUserLink where user.id =:userId " +
+                    "and discipline.id =:disciplineId ");
+            query.setInteger("userId", user.getId());
+            query.setInteger("disciplineId", discipline.getId());
+            result = (DisciplineUserLink) query.uniqueResult();
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally {
+            if(session.isOpen()){
+                System.out.println("Closing session");
+                session.close();
+            }
+        }
+
+        return result;
+    }
 
 
 }

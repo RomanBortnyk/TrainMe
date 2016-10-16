@@ -1,8 +1,12 @@
 package controllers;
 
 import dao.implementation.AvatarDao;
+import dao.implementation.DisciplineDao;
+import dao.implementation.DisciplineUserLinkDao;
 import dao.implementation.UserDao;
 import model.Avatar;
+import model.Discipline;
+import model.DisciplineUserLink;
 import model.User;
 import org.apache.commons.fileupload.*;
 
@@ -40,22 +44,38 @@ public class ModifyUsersDataServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User currentUser = (User)session.getAttribute("currentSessionUser");
 
+
         if (pathParts[1].equals("avatar")) {
 
             updateAvatar(request,currentUser);
 
         }
-
+//        TODO: test this if
         if (pathParts[1].equals("discipline")) {
 
+            DisciplineDao disciplineDao = new DisciplineDao();
+            DisciplineUserLinkDao discuserLinkDao = new DisciplineUserLinkDao();
+
             if (pathParts[2].equals("add")) {
+                String newDiscName = request.getParameter("disciplineToAdd");
+                DisciplineUserLink linkToAdd = new DisciplineUserLink();
+                linkToAdd.setUser(currentUser);
+                linkToAdd.setDiscipline(disciplineDao.read(newDiscName));
+
+                discuserLinkDao.create(linkToAdd);
 
             } else {
+                String disciplineName = request.getParameter("disciplineToRemove");
+                DisciplineUserLink linkToRemove = discuserLinkDao.read(currentUser,
+                                                disciplineDao.read(disciplineName));
+                discuserLinkDao.delete(linkToRemove);
 
             }
         }
 
         if (pathParts[1].equals("description")) {
+
+            updateDescription(request, currentUser);
 
         }
 
@@ -67,6 +87,7 @@ public class ModifyUsersDataServlet extends HttpServlet {
         FileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         File uploadedFile = null;
+
 
         try {
 
@@ -101,6 +122,15 @@ public class ModifyUsersDataServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    public void updateDescription (HttpServletRequest request, User currentUser){
+
+//        String newDescription = request.getParameter("description");
+        String newDescription = "new description";
+        currentUser.setDescription(newDescription);
+        UserDao userDao = new UserDao();
+        userDao.update(currentUser);
+
+    }
+
 }
-
-

@@ -14,4 +14,5 @@ public class ShutdownHookListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         HibernateUtil.shutdown();
     }
+
 }

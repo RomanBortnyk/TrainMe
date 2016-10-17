@@ -4,6 +4,7 @@ import dao.interfaces.AbstractDao;
 import model.Avatar;
 import model.Item;
 import model.User;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import persistence.HibernateUtil;
@@ -28,8 +29,6 @@ public class UserDao extends AbstractDao {
 
             System.out.println("user with login: " + user.getLogin() + " has been created");
             return user;
-
-
         }
     }
 
@@ -69,6 +68,7 @@ public class UserDao extends AbstractDao {
             System.out.println("you try delete user which does not exist");
         }
     }
+
 
     public List readAll() {
         return super.readAll(User.class);
@@ -135,6 +135,25 @@ public class UserDao extends AbstractDao {
         session.getTransaction().commit();
         if (newUser == null) return false; else return true;
 
+    }
+
+    public List readAllFullNames (){
+
+        List result = null;
+
+        try {
+
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.createQuery("select firstName, lastName from User");
+            result = q.list();
+            session.getTransaction().commit();
+        }catch (HibernateException e){
+            e.printStackTrace();
+        }
+
+
+        return result;
     }
 
 }

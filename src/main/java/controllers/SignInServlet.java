@@ -40,15 +40,14 @@ public class SignInServlet extends HttpServlet{
                 FeedbackDao feedbackDao = new FeedbackDao();
                 List feedbacks = feedbackDao.getUsersFeedbacks(user.getId());
 
+
                 DisciplineUserLinkDao disUslinkDao = new DisciplineUserLinkDao();
                 List disciplineLinks = disUslinkDao.getUsersDisciplineLinks(user.getId());
 
                 session.setAttribute("disciplineLinks", disciplineLinks);
                 session.setAttribute("usersFeedbacks", feedbacks);
-                session.setAttribute("userDao", userDAO);
 
-                RequestDispatcher rd = request.getRequestDispatcher("views/userPage.jsp");
-                rd.forward(request,response);
+                response.sendRedirect("views/userPage.jsp");
 
             }else {
                 request.setAttribute("incorrectPass", true);
@@ -62,7 +61,5 @@ public class SignInServlet extends HttpServlet{
 
 
     }
-
-
 
 }

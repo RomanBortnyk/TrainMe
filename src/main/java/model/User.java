@@ -159,5 +159,12 @@ public class User implements Item, Serializable {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userType='" + userType + '\'' +
+                '}';
+    }
 }

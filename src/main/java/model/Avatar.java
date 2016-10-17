@@ -2,6 +2,8 @@ package model;
 
 import javax.persistence.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 /**
  * Created by romab on 10/2/16.
@@ -19,6 +21,10 @@ public class Avatar implements Item {
 
     public Avatar(byte[] image) {
         this.image = image;
+    }
+
+    public Avatar(File image) {
+        setImage(image);
     }
 
     @Id
@@ -42,6 +48,22 @@ public class Avatar implements Item {
     }
 
 
+    public void setImage (File file){
 
+        byte[] bFile = new byte[(int) file.length()];
+
+        try {
+
+            FileInputStream fileInputStream = new FileInputStream(file);
+            //convert file into array of bytes
+            fileInputStream.read(bFile);
+            fileInputStream.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        this.image = bFile;
+
+    }
 
 }

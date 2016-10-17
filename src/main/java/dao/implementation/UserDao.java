@@ -1,6 +1,7 @@
 package dao.implementation;
 
 import dao.interfaces.AbstractDao;
+import model.Avatar;
 import model.Item;
 import model.User;
 import org.hibernate.HibernateException;
@@ -9,6 +10,8 @@ import org.hibernate.Session;
 import persistence.HibernateUtil;
 
 import javax.persistence.UniqueConstraint;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,8 +29,6 @@ public class UserDao extends AbstractDao {
 
             System.out.println("user with login: " + user.getLogin() + " has been created");
             return user;
-
-
         }
     }
 
@@ -41,6 +42,23 @@ public class UserDao extends AbstractDao {
         return (User) super.update(user);
     }
 
+    public void updateAvatar (User user, Avatar newAvatar){
+
+        Avatar currentAvatar = user.getAvatar();
+        AvatarDao avatarDao = new AvatarDao();
+        if (currentAvatar == null){
+            user.setAvatar(avatarDao.create(newAvatar));
+            update(user);
+        }else{
+
+            currentAvatar = avatarDao.read(currentAvatar.getId());
+            currentAvatar.setImage(newAvatar.getImage());
+
+            avatarDao.update(currentAvatar);
+        }
+
+    }
+
     public void delete(User user) {
         if (isExist(user)) {
             super.delete(user);
@@ -50,6 +68,7 @@ public class UserDao extends AbstractDao {
             System.out.println("you try delete user which does not exist");
         }
     }
+
 
     public List readAll() {
         return super.readAll(User.class);
@@ -79,6 +98,26 @@ public class UserDao extends AbstractDao {
 
         if (newUser != null) return newUser; else return null;
 
+    }
+
+    public List read (String lastName, String firstName ){
+
+        List result = new ArrayList();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query q = session.createQuery("from User where firstName =:firstName " +
+                "and lastName =:lastName");
+
+        q.setString("firstName",firstName);
+        q.setString("lastName", lastName);
+
+        result = q.list();
+
+        session.getTransaction().commit();
+
+        return result;
     }
 
     public boolean isExist (User user){

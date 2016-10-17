@@ -3,6 +3,7 @@ package dao.implementation;//package dao.implementation;
 import model.Avatar;
 import model.Discipline;
 import dao.interfaces.AbstractDao;
+import model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import persistence.HibernateUtil;
@@ -59,6 +60,21 @@ public class DisciplineDao extends AbstractDao {
             return (Discipline) super.create(discipline);
 
 
+    }
+
+    public Discipline read (String name){
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query q = session.createQuery("from Discipline where name = :name");
+        q.setString("name", name);
+
+        Discipline newDiscipline = (Discipline)q.uniqueResult();
+
+        session.getTransaction().commit();
+
+        return newDiscipline;
     }
 
 }

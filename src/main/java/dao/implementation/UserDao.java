@@ -91,6 +91,7 @@ public class UserDao extends AbstractDao {
         Query q = session.createQuery("from User where login = :login");
         q.setString("login",login);
 
+
         User newUser = (User)q.uniqueResult();
 
         session.getTransaction().commit();
@@ -135,7 +136,5 @@ public class UserDao extends AbstractDao {
         if (newUser == null) return false; else return true;
 
     }
-
-
 
 }

@@ -75,6 +75,7 @@
                 <p>${currentSessionUser.userType}</p>
 
             </div>
+
             <div class="well">
                 <h4>${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}</h4>
                 <ul class="list-group">
@@ -84,6 +85,44 @@
                         </li>
                     </c:forEach>
                 </ul>
+
+                <button type="button" style="margin-bottom: 15px;" class="btn btn-default btn-sm" data-toggle="modal" data-target="#changeInterests">Change interests</button>
+                <!-- Modal -->
+                <div class="modal fade" id="changeInterests" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="vertical-alignment-helper">
+                        <div class="modal-dialog vertical-align-center">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title" >Change interests</h4>
+                                </div>
+
+                                <div class="modal-body interests-section">
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label><input type="checkbox" value="">fitness</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="text-center" style="padding: 15px; border-bottom: 1px solid #e5e5e5;">Add your interests</h4>
+
+                                    <div class="text-center">
+                                        <div class="form-group">
+                                            <input type="text" class="text-center interest-field">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>

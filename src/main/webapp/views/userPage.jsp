@@ -105,8 +105,8 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="well">
-                            <p>${userDao.read(feedback.authorId()).getLogin()}</p>
-                            <img src="/image/avatar/${feedback.authorId()}" class="img-circle" height="55" width="55" alt="Avatar">
+                            <p>${feedback.getAuthor().getLogin()}</p>
+                            <img src="/image/avatar/${feedback.getAuthor().getId()}" class="img-circle" height="55" width="55" alt="Avatar">
                         </div>
                     </div>
                     <div class="col-lg-9">

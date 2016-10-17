@@ -13,7 +13,7 @@ $(document).ready(function() {
                     url : "/SearchController",
                     type : "GET",
                     data : {
-                        term : request.term
+                        users: request.term
                     },
                     dataType : "json",
                     success : function(data) {
@@ -22,13 +22,6 @@ $(document).ready(function() {
                 });
             },
 
-            select: function( event, ui ) {
-                var name =  ui.item.value
-                // Your code
-                $("#search").val(name);
-                return false;
-
-            }
         });
         
     });

@@ -5,12 +5,15 @@ import model.Avatar;
 import model.Discipline;
 import model.Message;
 import model.User;
+import persistence.HibernateUtil;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 public class App 
 {
@@ -46,20 +49,33 @@ public class App
 //        avatarDao.createFromFile(hipsta3);
 //        avatarDao.createFromFile(hipsta4);
 
-        DisciplineDao disciplineDao = new DisciplineDao();
+//        DisciplineDao disciplineDao = new DisciplineDao();
 //
 
-        File n1 = new File("/home/romab/Desktop/kickboxing.png");
-        File n2 = new File("/home/romab/Desktop/bodybuilding.png");
-
-        disciplineDao.createFromFile("kickboxing", n1);
-        disciplineDao.createFromFile("bodybuilding", n2);
+//        File n1 = new File("/home/romab/Desktop/kickboxing.png");
+//        File n2 = new File("/home/romab/Desktop/bodybuilding.png");
+//
+//        disciplineDao.createFromFile("kickboxing", n1);
+//        disciplineDao.createFromFile("bodybuilding", n2);
 //        disciplineDao.createFromFile("weightlifting", weightlifting);
 //        disciplineDao.createFromFile("swimming", swimming);
 //        disciplineDao.createFromFile("baseball", baseball);
 //        disciplineDao.createFromFile("basketball", basketball);
 
+        UserDao userDao = new UserDao();
+        List list =  userDao.readAllFullNames();
 
+//        System.out.println(list.get(0) instanceof Object[]);
+        Object[] oarray = (Object[]) list.get(0);
+//        String [] names = Arrays.copyOf(oarray,oarray.length, String[].class);
 
+        String[] names = Arrays.asList(oarray).toArray(new String[oarray.length]);
+
+        for (Object f: list){
+
+        }
+        String s [] = "roman bortnyk".split(" ");
+
+        HibernateUtil.shutdown();
     }
 }

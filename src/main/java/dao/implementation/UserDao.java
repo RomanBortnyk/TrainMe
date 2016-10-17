@@ -10,6 +10,7 @@ import persistence.HibernateUtil;
 
 import javax.persistence.UniqueConstraint;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -90,13 +91,32 @@ public class UserDao extends AbstractDao {
         Query q = session.createQuery("from User where login = :login");
         q.setString("login",login);
 
-
         User newUser = (User)q.uniqueResult();
 
         session.getTransaction().commit();
 
         if (newUser != null) return newUser; else return null;
 
+    }
+
+    public List read (String lastName, String firstName ){
+
+        List result = new ArrayList();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query q = session.createQuery("from User where firstName =:firstName " +
+                "and lastName =:lastName");
+
+        q.setString("firstName",firstName);
+        q.setString("lastName", lastName);
+
+        result = q.list();
+
+        session.getTransaction().commit();
+
+        return result;
     }
 
     public boolean isExist (User user){
@@ -115,5 +135,7 @@ public class UserDao extends AbstractDao {
         if (newUser == null) return false; else return true;
 
     }
+
+
 
 }

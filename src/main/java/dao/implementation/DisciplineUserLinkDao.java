@@ -9,7 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import persistence.HibernateUtil;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by romab on 9/23/16.
@@ -125,5 +125,34 @@ public class DisciplineUserLinkDao extends AbstractDao{
         return result;
     }
 
+    public List find (String userType, String disciplineName){
+        List result = new ArrayList();
+        List <DisciplineUserLink> tempList = null;
+
+        DisciplineDao disciplineDao = new DisciplineDao();
+        Discipline discipline = disciplineDao.read(disciplineName);
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query q = session.createQuery("from DisciplineUserLink where " +
+                "discipline.id = :disciplineId");
+
+        q.setInteger("disciplineId",discipline.getId());
+
+        tempList =  q.list();
+
+        session.getTransaction().commit();
+
+
+        for (DisciplineUserLink discUsrLink: tempList){
+            User currentUser = discUsrLink.getUser();
+            if (currentUser.getUserType().equals(userType))
+                result.add(currentUser);
+
+        }
+
+        return result;
+    }
 
 }

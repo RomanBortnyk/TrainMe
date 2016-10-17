@@ -51,15 +51,9 @@ public class Feedback implements Item {
         return id;
     }
 
-
-    public int authorId (){
-        return this.author.getId();
-    }
-
     public void setId(int id) {
         this.id = id;
     }
-
 
     @Basic
     @Column(name = "text")

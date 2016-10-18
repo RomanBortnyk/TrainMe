@@ -92,31 +92,35 @@
                     <div class="vertical-alignment-helper">
                         <div class="modal-dialog vertical-align-center">
                             <div class="modal-content">
-
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                                     </button>
-                                    <h4 class="modal-title" >Change interests</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Change interests</h4>
                                 </div>
-
                                 <div class="modal-body interests-section">
-
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                            <div class="checkbox-inline">
-                                                <label><input type="checkbox" value="">fitness</label>
+                                    <div class="row" style="margin-top: 20px;">
+                                        <form action="" method="">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                                <input class="form-control">
                                             </div>
-                                        </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <button class="btn btn-success" style="width: 100%;">Add</button>
+                                            </div>
+                                        </form>
                                     </div>
-
-                                    <h4 class="text-center" style="padding: 15px; border-bottom: 1px solid #e5e5e5;">Add your interests</h4>
-
-                                    <div class="text-center">
-                                        <div class="form-group">
-                                            <input type="text" class="text-center interest-field">
-                                        </div>
+                                    <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+                                        <form action="" method="">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                                <select class="form-control">
+                                                    <option disabled selected hidden>--</option>
+                                                    <option>none</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <button class="btn btn-danger" style="width: 100%;">Delete</button>
+                                            </div>
+                                        </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -137,10 +141,35 @@
                     </div>
                 </div>
             </div>
-
+            <button type="button" style="margin-bottom: 15px; float: left; margin: 0 15px;" class="btn btn-default btn-sm" data-toggle="modal" data-target="#statusText">Change description</button>
+            <!-- Modal -->
+            <div class="modal fade" id="statusText" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Change description</h4>
+                            </div>
+                            <div class="modal-body interests-section">
+                                <div class="row">
+                                    <form action="" method="">
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-md" style="float: right;">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-12"> <h3>Feedbacks</h3> </div>
 
             <c:forEach var="feedback" items="${usersFeedbacks}" >
+            <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="well">
@@ -154,13 +183,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </c:forEach>
-
         </div>
-
     </div>
 </div>
-
 <%@include file="footer.html"%>
 
 </body>

@@ -66,8 +66,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <p></p>
                 <p>${currentSessionUser.firstName}</p>
                 <p>${currentSessionUser.lastName}</p>

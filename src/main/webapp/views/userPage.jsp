@@ -126,11 +126,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
         <div class="col-lg-8">
             <div class="row">
                 <div class="col-lg-12">
@@ -167,7 +164,6 @@
                 </div>
             </div>
             <div class="col-lg-12"> <h3>Feedbacks</h3> </div>
-
             <c:forEach var="feedback" items="${usersFeedbacks}" >
             <div class="col-lg-12">
                 <div class="row">
@@ -189,6 +185,5 @@
     </div>
 </div>
 <%@include file="footer.html"%>
-
 </body>
 </html>

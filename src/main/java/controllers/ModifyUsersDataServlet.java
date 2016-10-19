@@ -1,21 +1,14 @@
 package controllers;
 
-import dao.implementation.AvatarDao;
 import dao.implementation.DisciplineDao;
 import dao.implementation.DisciplineUserLinkDao;
 import dao.implementation.UserDao;
 import model.Avatar;
-import model.Discipline;
 import model.DisciplineUserLink;
 import model.User;
 import org.apache.commons.fileupload.*;
-
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.IOUtils;
-
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +36,7 @@ public class ModifyUsersDataServlet extends HttpServlet {
         String pathParts[] = request.getPathInfo().split("/");
         HttpSession session = request.getSession();
         User currentUser = (User)session.getAttribute("currentSessionUser");
+        List currentDiscList = (List)session.getAttribute("disciplineLinks");
 
 
         if (pathParts[1].equals("avatar")) {
@@ -50,25 +44,32 @@ public class ModifyUsersDataServlet extends HttpServlet {
             updateAvatar(request,currentUser);
 
         }
-//        TODO: test this if
+
         if (pathParts[1].equals("discipline")) {
 
             DisciplineDao disciplineDao = new DisciplineDao();
-            DisciplineUserLinkDao discuserLinkDao = new DisciplineUserLinkDao();
+            DisciplineUserLinkDao discUsrLinkDao = new DisciplineUserLinkDao();
 
             if (pathParts[2].equals("add")) {
                 String newDiscName = request.getParameter("disciplineToAdd");
+                if (newDiscName == null) response.sendRedirect("../../views/userPage.jsp");
+
                 DisciplineUserLink linkToAdd = new DisciplineUserLink();
                 linkToAdd.setUser(currentUser);
                 linkToAdd.setDiscipline(disciplineDao.read(newDiscName));
 
-                discuserLinkDao.create(linkToAdd);
+                currentDiscList.add(discUsrLinkDao.create(linkToAdd));
 
             } else {
-                String disciplineName = request.getParameter("disciplineToRemove");
-                DisciplineUserLink linkToRemove = discuserLinkDao.read(currentUser,
-                                                disciplineDao.read(disciplineName));
-                discuserLinkDao.delete(linkToRemove);
+                if (pathParts[2].equals("remove")){
+
+                    String disciplineName = request.getParameter("disciplineToRemove");
+
+                    DisciplineUserLink linkToRemove = discUsrLinkDao.read(currentUser, disciplineDao.read(disciplineName));
+
+                    currentDiscList.remove(linkToRemove);
+                    discUsrLinkDao.delete(linkToRemove);
+                }
 
             }
         }

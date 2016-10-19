@@ -18,6 +18,8 @@
     <script src="../resources/js/bootstrap.min.js"></script>
     <link href="../resources/css/userPage.css" rel="stylesheet">
     <link href="../resources/css/font-awesome.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script type="text/javascript" src="../resources/js/userPage.js"></script>
 
 
@@ -80,7 +82,7 @@
 
             <div class="well">
                 <h4>${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}</h4>
-                <ul class="list-group">
+                <ul id="disciplinesList" class="list-group">
                     <c:forEach var="link" items="${disciplineLinks}">
                         <li class="list-group-item"><img src="/image/icon/${link.getDiscipline().getId()}" height="35"
                                                          width="35" alt="icon">
@@ -89,7 +91,7 @@
                     </c:forEach>
                 </ul>
 
-                <button type="button" style="margin-bottom: 15px;" class="btn btn-default btn-sm" data-toggle="modal"
+                <button id= "changeInterestsButton" type="button" style="margin-bottom: 15px;" class="btn btn-default btn-sm" data-toggle="modal"
                         data-target="#changeInterests">Change ${currentSessionUser.userType.equals("customer") ? "interests" : "specialization"}
                 </button>
                 <!-- Modal -->
@@ -106,9 +108,11 @@
                                 </div>
                                 <div class="modal-body interests-section">
                                     <div class="row" style="margin-top: 20px;">
-                                        <form action="" method="">
+                                        <form action="/modify/discipline/add" method="post">
                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                                <input class="form-control">
+                                                <select id="discToAdd" name="disciplineToAdd" class="form-control">
+                                                    <option disabled selected hidden>--</option>
+                                                </select>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                 <button class="btn btn-success" style="width: 100%;">Add</button>
@@ -116,11 +120,14 @@
                                         </form>
                                     </div>
                                     <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
-                                        <form action="" method="">
+                                        <form action="/modify/discipline/remove" method="post">
                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                                <select class="form-control">
-                                                    <option disabled selected hidden>--</option>
-                                                    <option>none</option>
+                                                <select id="discToRemove" name="disciplineToRemove" class="form-control">
+                                                    <c:forEach var="link" items="${disciplineLinks}">
+                                                        <option disabled selected hidden>--</option>
+                                                        <option>${link.getDiscipline().getName()}</option>
+                                                    </c:forEach>
+
                                                 </select>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">

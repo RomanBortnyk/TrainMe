@@ -18,17 +18,8 @@ public class DisciplineUserLinkDao extends AbstractDao{
 
 
     public DisciplineUserLink create(DisciplineUserLink link) {
-        if (isExist(link)) {
-            System.out.println("link user: "+link.getUser().getLogin() +" discipline: "
-                    + link.getDiscipline().getName() + " already exist");
-            return null;
-        }
-        else {
-            super.create(link);
-            System.out.println("link user: "+link.getUser().getLogin() +" discipline: "
-                    + link.getDiscipline().getName() +" has been created");
-            return link;
-        }
+
+        return (DisciplineUserLink) super.create(link);
 
     }
 
@@ -37,13 +28,7 @@ public class DisciplineUserLinkDao extends AbstractDao{
     }
 
     public void delete(DisciplineUserLink link) {
-        if (isExist(link)) {
-            super.delete(link);
-            System.out.println("link user: "+link.getUser().getLogin() +" discipline: "
-                    + link.getDiscipline().getName() +" has been deleted");
-        } else {
-            System.out.println("you try delete link which does not exist");
-        }
+         super.delete(link);
     }
 
 
@@ -53,24 +38,6 @@ public class DisciplineUserLinkDao extends AbstractDao{
 
     public List readAll() {
         return super.readAll(DisciplineUserLink.class);
-    }
-
-    public boolean isExist (DisciplineUserLink link){
-        if (link == null) return false;
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-
-        Query q = session.createQuery("from DisciplineUserLink where " +
-                "user.id = :userId or discipline.id = :disciplineId");
-        q.setInteger("userId",link.getUser().getId());
-        q.setInteger("disciplineId",link.getDiscipline().getId());
-        User newUser = (User)q.uniqueResult();
-
-        session.getTransaction().commit();
-
-        if (newUser == null) return false; else return true;
-
     }
 
     public List getUsersDisciplineLinks (int userId){

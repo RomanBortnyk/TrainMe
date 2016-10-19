@@ -43,6 +43,7 @@ public class ModifyUsersDataServlet extends HttpServlet {
         String pathParts[] = request.getPathInfo().split("/");
         HttpSession session = request.getSession();
         User currentUser = (User)session.getAttribute("currentSessionUser");
+        List currentDiscList = (List)session.getAttribute("disciplineLinks");
 
 
         if (pathParts[1].equals("avatar")) {
@@ -50,25 +51,35 @@ public class ModifyUsersDataServlet extends HttpServlet {
             updateAvatar(request,currentUser);
 
         }
+
 //        TODO: test this if
+//        TODO: remove existing disciplines in user profile from result list
+
         if (pathParts[1].equals("discipline")) {
 
             DisciplineDao disciplineDao = new DisciplineDao();
-            DisciplineUserLinkDao discuserLinkDao = new DisciplineUserLinkDao();
+            DisciplineUserLinkDao discUsrLinkDao = new DisciplineUserLinkDao();
 
             if (pathParts[2].equals("add")) {
                 String newDiscName = request.getParameter("disciplineToAdd");
+                if (newDiscName == null) response.sendRedirect("../../views/userPage.jsp");
+
                 DisciplineUserLink linkToAdd = new DisciplineUserLink();
                 linkToAdd.setUser(currentUser);
                 linkToAdd.setDiscipline(disciplineDao.read(newDiscName));
 
-                discuserLinkDao.create(linkToAdd);
+                currentDiscList.add(discUsrLinkDao.create(linkToAdd));
 
             } else {
-                String disciplineName = request.getParameter("disciplineToRemove");
-                DisciplineUserLink linkToRemove = discuserLinkDao.read(currentUser,
-                                                disciplineDao.read(disciplineName));
-                discuserLinkDao.delete(linkToRemove);
+                if (pathParts[2].equals("remove")){
+
+                    String disciplineName = request.getParameter("disciplineToRemove");
+
+                    DisciplineUserLink linkToRemove = discUsrLinkDao.read(currentUser, disciplineDao.read(disciplineName));
+
+                    currentDiscList.remove(linkToRemove);
+                    discUsrLinkDao.delete(linkToRemove);
+                }
 
             }
         }

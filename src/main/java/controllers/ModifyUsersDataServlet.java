@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-
 /**
  * Created by romab on 10/14/16.
  */

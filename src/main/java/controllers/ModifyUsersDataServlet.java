@@ -51,6 +51,7 @@ public class ModifyUsersDataServlet extends HttpServlet {
 
             if (pathParts[2].equals("add")) {
                 String newDiscName = request.getParameter("disciplineToAdd");
+
                 if (newDiscName == null) response.sendRedirect("../../views/userPage.jsp");
 
                 DisciplineUserLink linkToAdd = new DisciplineUserLink();
@@ -125,8 +126,7 @@ public class ModifyUsersDataServlet extends HttpServlet {
 
     public void updateDescription (HttpServletRequest request, User currentUser){
 
-//        String newDescription = request.getParameter("description");
-        String newDescription = "new description";
+        String newDescription = request.getParameter("newDescription");
         currentUser.setDescription(newDescription);
         UserDao userDao = new UserDao();
         userDao.update(currentUser);

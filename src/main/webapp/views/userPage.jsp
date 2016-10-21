@@ -85,9 +85,7 @@
                 <ul id="disciplinesList" class="list-group">
                     <c:forEach var="link" items="${disciplineLinks}">
                         <li class="list-group-item"><img src="/image/icon/${link.getDiscipline().getId()}" height="35"
-                                                         width="35" alt="icon">
-                                ${link.getDiscipline().getName()}
-                        </li>
+                                                         width="35" alt="icon">${link.getDiscipline().getName()}</li>
                     </c:forEach>
                 </ul>
 
@@ -142,16 +140,19 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-8">
             <div id="description" class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default text-left">
-                        <div class="panel-body">
-                            <p>${currentSessionUser.description}</p>
+                        <div style="padding: 1%" class="panel-body">
+                            <pre style="border: none; background: none; padding: 0%">${currentSessionUser.description}</pre>
+                            <%--<textarea>${currentSessionUser.description}</textarea>--%>
+                            <%--<p>${currentSessionUser.description}</p>--%>
                         </div>
                     </div>
                 </div>
-                <button type="button" style="margin-bottom: 15px; float: left; margin: 0 15px;"
+                <button id="changeDescrButton" type="button" style="margin-bottom: 15px; float: left; margin: 0 15px;"
                         class="btn btn-default btn-sm" data-toggle="modal" data-target="#statusText">Change description
                 </button>
             </div>
@@ -170,9 +171,9 @@
                             </div>
                             <div class="modal-body interests-section">
                                 <div class="row">
-                                    <form action="" method="">
+                                    <form action="/modify/description" method="post">
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                                            <textarea style="text-align: justify" class="form-control" name="newDescription" rows="5" id="comment">${currentSessionUser.description}</textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-md" style="float: right;">
                                             Save

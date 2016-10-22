@@ -34,15 +34,8 @@ public class AuthenticationFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             httpResponse.sendRedirect("/views/notifications/authenticationError.jsp");
         } else {
-
-            String login = ((User)session.getAttribute("currentSessionUser")).getLogin();
-            System.out.println(login + " bye-bye");
-
             chain.doFilter(request, response);
         }
-
-
-
     }
 
     public void destroy() {

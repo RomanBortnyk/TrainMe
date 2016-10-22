@@ -2,7 +2,7 @@
  * Created by romab on 10/1/16.
  */
 
-// autocompletion for form in popUp window "change interests"
+// autocompletion for search page
 $(document).ready(function() {
 
     // //autocomletion function

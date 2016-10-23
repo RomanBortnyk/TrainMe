@@ -147,8 +147,6 @@
                     <div class="panel panel-default text-left">
                         <div style="padding: 1%" class="panel-body">
                             <pre style="border: none; background: none; padding: 0%">${currentSessionUser.description}</pre>
-                            <%--<textarea>${currentSessionUser.description}</textarea>--%>
-                            <%--<p>${currentSessionUser.description}</p>--%>
                         </div>
                     </div>
                 </div>

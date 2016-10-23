@@ -13,13 +13,14 @@
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <link href="../resources/css/userPage.css" rel="stylesheet">
     <link href="../resources/css/font-awesome.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script type="text/javascript" src="../resources/js/searchPage.js"></script>
 
 </head>
 <body>
 <%@ page isELIgnored="false" %>
 <%@ include file="header.html" %>
-
 
     <div class="container">
         <div class="row">
@@ -35,7 +36,7 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
                     <div class="input-group" style="height: 40px;">
-                      <input name="searchString" type="text"  class="form-control" placeholder="Search" style="height: 40px;">
+                      <input id="searchField" name="searchString" type="text" class="form-control" placeholder="Search" style="height: 40px;">
                       <span class="input-group-addon">
                           <i class="fa fa-search" aria-hidden="true"><input type="submit"></i>
                       </span>

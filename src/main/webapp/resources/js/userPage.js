@@ -29,14 +29,13 @@ $(document).ready(function() {
     
     $(function () {
         $.ajax({
-            url: "/autocomplete",
+            url: "/autocomplete/userPage",
             dataType: "json",
             success: function (data) {
                 fillAddList(data)
             }
         });
     });
-    
 });
 
 

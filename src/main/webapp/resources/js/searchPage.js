@@ -2,13 +2,64 @@
  * Created by romab on 10/23/16.
  */
 
+// autocompletion for search page
+$(document).ready(function() {
+
+    var property = "users";
+    
+    if (property === "disciplines"){
+        //autocomletion function
+        $(function() {
+
+            $("#searchField").autocomplete({
+                source : function(request, response) {
+                    $.ajax({
+                        url : "/autocomplete/searchPage",
+                        type : "GET",
+                        data : {
+                            disciplines: request.term
+                        },
+                        dataType : "json",
+                        success : function(data) {
+                            response(data);
+                        }
+                    });
+                }
+            });
+            // $(".ui-autocomplete").css("z-index", "2147483647");
+        });
+    }else {
+        //autocomletion function
+        $(function() {
+
+            $("#searchField").autocomplete({
+                source : function(request, response) {
+                    $.ajax({
+                        url : "/autocomplete/searchPage",
+                        type : "GET",
+                        data : {
+                            users: request.term
+                        },
+                        dataType : "json",
+                        success : function(data) {
+                            response(data);
+                        }
+                    });
+                }
+            });
+            // $(".ui-autocomplete").css("z-index", "2147483647");
+        });
+    }
+    
+});
+
+
 $(document).ready(function() {
 
     $(function() {
         $('#toggle-one').bootstrapToggle();
         $('#toggle-two').bootstrapToggle();
     })
-    
     
 });
 

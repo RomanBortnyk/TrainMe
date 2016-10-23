@@ -100,7 +100,7 @@ public class UserDao extends AbstractDao {
 
     }
 
-    public List read (String lastName, String firstName ){
+    public List read (String lastName, String firstName, String userType){
 
         List result = new ArrayList();
 
@@ -108,10 +108,11 @@ public class UserDao extends AbstractDao {
         session.beginTransaction();
 
         Query q = session.createQuery("from User where firstName =:firstName " +
-                "and lastName =:lastName");
+                "and lastName =:lastName and userType =:userType");
 
         q.setString("firstName",firstName);
         q.setString("lastName", lastName);
+        q.setString("userType", userType);
 
         result = q.list();
 

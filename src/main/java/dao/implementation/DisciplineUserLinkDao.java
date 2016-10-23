@@ -66,6 +66,7 @@ public class DisciplineUserLinkDao extends AbstractDao{
 
     }
 
+
     public DisciplineUserLink read (User user, Discipline discipline){
 
         Session session = null;
@@ -103,7 +104,7 @@ public class DisciplineUserLinkDao extends AbstractDao{
         session.beginTransaction();
 
         Query q = session.createQuery("from DisciplineUserLink where " +
-                "discipline.id = :disciplineId");
+                "discipline.id =:disciplineId");
 
         q.setInteger("disciplineId",discipline.getId());
 

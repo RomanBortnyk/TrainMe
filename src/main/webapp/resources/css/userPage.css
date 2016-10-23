@@ -50,7 +50,6 @@ body {
     text-align: center;
 }
 .interests-section .checkbox label input{
-<<<<<<< Updated upstream
     position: absolute;
 }
 .interest-field{
@@ -92,7 +91,7 @@ body {
 }
 .description-bkg{
     margin: 10px 0;
-    padding: 19px;
+    padding: 1%;
     background-color: #ffffff;
     border: 1px solid #e3e3e3;
     border-radius: 4px;
@@ -139,5 +138,4 @@ footer p{
 }
 @media all and (max-width: 768px){
 
->>>>>>> Stashed changes
 }

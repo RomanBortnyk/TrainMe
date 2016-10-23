@@ -25,8 +25,8 @@ public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        String searchOption = request.getParameter("");
-        String userTypeOption = request.getParameter("");
+        String searchOption = request.getParameter("searchOption");
+        String userTypeOption = request.getParameter("userTypeOption");
         String searchString = request.getParameter("searchString");
 
         HttpSession session = request.getSession();
@@ -34,44 +34,40 @@ public class SearchServlet extends HttpServlet {
         UserDao userDao = new UserDao();
         DisciplineUserLinkDao discUsrLnkDao = new DisciplineUserLinkDao();
 
-        searchOption = "by_discipline";
-        userTypeOption = "coach";
+//        searchOption = "by_discipline";
+//        userTypeOption = "coach";
 
+//        if (userTypeOption == null) userTypeOption = "customer"; else userTypeOption="customer";
 
-//        TODO test this if
-        if (searchOption.equals("by_userName")){
+        if (searchOption.equals("byUserName")){
             String fullName [] = searchString.split(" ");
-
+            //search by username
             if (resultList == null){
                 List temp = userDao.read(fullName[0],fullName[1],userTypeOption);
                 session.setAttribute("resultList", temp);
-                response.sendRedirect("../../views/searchTest.jsp");
+                response.sendRedirect("../../views/searchPage.jsp");
 
             }else {
                 resultList.clear();
                 List temp = userDao.read(fullName[0],fullName[1],userTypeOption);
                 resultList.addAll(temp);
-//                resultList.addAll(userDao.read(fullName[0],fullName[1],userTypeOption));
-                response.sendRedirect("../../views/searchTest.jsp");
+                response.sendRedirect("../../views/searchPage.jsp");
 
             }
 
-
-        }else if (searchOption.equals("by_discipline")){
+        }else if (searchOption.equals("byDiscipline")){
+            //search by discipline
             if (resultList == null){
                 List temp = discUsrLnkDao.find(userTypeOption,searchString);
                 session.setAttribute("resultList", temp);
-                response.sendRedirect("../../views/searchTest.jsp");
-            }else {
+                response.sendRedirect("../../views/searchPage.jsp");
 
+            }else {
                 resultList.clear();
                 List temp = discUsrLnkDao.find(userTypeOption,searchString);
                 resultList.addAll(temp);
-                response.sendRedirect("../../views/searchTest.jsp");
-
+                response.sendRedirect("../../views/searchPage.jsp");
             }
-
         }
-
     }
 }

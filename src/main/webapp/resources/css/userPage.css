@@ -1,3 +1,11 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: table;
+}
 .navbar{
     border-radius: 0;
 }
@@ -6,13 +14,6 @@
     border: none;
     background-color: inherit;
 }
-
-footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-}
-
 .avatar{
 
     padding-bottom: 5%;
@@ -60,4 +61,80 @@ footer {
 
 #description{
     padding-left: 2%;
+	position: absolute;
+}
+.toggle-grp{
+    margin: 30px 0;
+}
+.toggle-sec1,
+.toggle-sec2{
+    display: inline-block;
+    margin: 0px 80px;
+}
+.toggle-text{
+    display: inline-block;
+    margin: 0px 20px;
+}
+.toggle.btn {
+    width: 150px !important;
+}
+.result-section{
+    margin: 30px 0;
+}
+.avatar-result{
+    width: 100px;
+    height: 100px;
+    background: #d8d8d8;
+    border: 1px solid #9d9d9d;
+    border-radius: 50%;
+}
+.description-bkg{
+    margin: 10px 0;
+    padding: 19px;
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+.disciplines-result,
+.name-result{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.disciplines-result div:last-child p,
+.name-result p:last-child{
+    margin: 0;
+}
+.disciplines-result p{
+    display: inline-block;
+}
+.disciplines-result i{
+    margin: 0px 5px;
+}
+footer {
+    display: table-footer-group;
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+footer p{
+    margin: 20px 0;
+}
+@media all and (min-width: 768px) and (max-width: 992px) {
+    .disciplines-result div{
+        display: inline;
+        margin: 0px 10px;
+    }
+    .avatar-result{
+        text-align: center;
+    }
+}
+@media all and (max-width: 992px){
+    .pull-right.disciplines-result{
+        float: left !important;
+    }
+}
+@media all and (max-width: 768px){
+
 }

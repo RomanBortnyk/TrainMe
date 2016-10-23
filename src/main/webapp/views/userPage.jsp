@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
     <script src="../resources/js/jquery-3.1.1.min.js"></script>
     <script src="../resources/js/bootstrap.min.js"></script>
-    <link href="../resources/css/userPage.css" rel="stylesheet">
+    <link href="../../resources/css/userPage.css" rel="stylesheet">
     <link href="../resources/css/font-awesome.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">

@@ -23,27 +23,50 @@
 <%@ include file="header.html" %>
 
     <div class="container">
-        <div class="row">
-            <h1 class="text-center" style="margin-top: 50px;">TrainMe Search</h1>
-            <form action="/search" method="post">
-                <div class="text-center toggle-grp">
-                    <div class="toggle-sec1 text-center">
-                        <input id="toggle-one" name="userTypeOption" data-on="coach" data-off="customer" checked type="checkbox">
-                    </div>
-                    <div class="toggle-sec2 text-center">
-                        <input id="toggle-two" name="searchOption" data-on="by username" data-off="by discipline" checked type="checkbox">
-                    </div>
+    <div class="row">
+      <h1 class="text-center" style="margin-top: 50px;">TrainMe Search</h1>
+      <form action="" method="">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+
+          <div class="input-group" style="height: 40px;">
+            <input id="myInput1" type="text" class="form-control" placeholder="Search" style="height: 40px;">
+            
+
+            <div class="input-group-btn">
+              <button id="btnSearch" type="button" class="btn btn-default" style="height: 40px;"><i class="fa fa-search" aria-hidden="true"></i></button>
+
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 40px;"><span class="caret"></span></button>
+
+              
+
+              <div class="dropdown-menu dropdown-menu-right">
+                <div class="form-group">
+                  <p>Search option</p>
+
+                  <select class="form-control">
+                    <option value="0" selected>by full name</option>
+                    <option value="1">by login</option>
+                    <option value="2">by discipline</option>
+                  </select>
                 </div>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
-                    <div class="input-group" style="height: 40px;">
-                      <input id="searchField" name="searchString" type="text" class="form-control" placeholder="Search" style="height: 40px;">
-                      <span class="input-group-addon">
-                          <i class="fa fa-search" aria-hidden="true"><input type="submit"></i>
-                      </span>
-                  </div>
+                <div class="form-group">
+                  <p style="float: left; margin-top: 10px;">User type</p>
+
+                  <select class="form-control">
+                    <option selected>all</option>
+                    <option>coach</option>
+                    <option>customer</option>
+                  </select>
+                </div>
+                
               </div>
-          </form>
-      </div>
+
+            </div><!-- /btn-group -->
+
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 
   <div class="container">
@@ -88,12 +111,37 @@
 
 <%@include file="footer.html" %>
 
-<script>
+  <script>
+    $(document).on('click', '.dropdown-menu', function (e) {
+      e.stopPropagation();
+    });
+    $('select').on('change input', changePlaceHolder);
+    function changePlaceHolder() {
+      if ($(this).val() == "0") {
+        $(myInput1).attr("placeholder","Search by full name");
+      }
+      if ($(this).val() == "1") {
+        $(myInput1).attr("placeholder","Search by login");
+      }
+      if ($(this).val() == "2") {
+        $(myInput1).attr("placeholder","Search by discipline");
+      }
+    }
+
+    $('#btnSearch').prop("disabled", true);
     $(function() {
-        $('#toggle-one').bootstrapToggle();
-        $('#toggle-two').bootstrapToggle();
-    })
-</script>
+      $("input[id='myInput1']").keyup(function countRemainingChars(){
+        var number = $("input[id='myInput1']").val().length;
+        if(number > 0){
+          $('#btnSearch').prop("disabled", false);
+        }
+        if(number == 0){
+          $('#btnSearch').prop("disabled", true);
+        }
+      });
+    });
+
+  </script>
 </body>
 </html>
 

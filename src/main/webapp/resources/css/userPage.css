@@ -60,7 +60,7 @@ body {
 #description{
     padding-left: 2%;
 =======
-	position: absolute;
+position: absolute;
 }
 .toggle-grp{
     margin: 30px 0;
@@ -110,6 +110,10 @@ body {
 }
 .disciplines-result i{
     margin: 0px 5px;
+}
+.dropdown-menu{
+    padding: 10px;
+    min-width: 300px;
 }
 footer {
     display: table-footer-group;

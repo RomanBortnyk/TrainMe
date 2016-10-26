@@ -112,12 +112,20 @@ public class DisciplineUserLinkDao extends AbstractDao{
 
         session.getTransaction().commit();
 
+        if( !userType.equals("all") ){
 
-        for (DisciplineUserLink discUsrLink: tempList){
-            User currentUser = discUsrLink.getUser();
-            if (currentUser.getUserType().equals(userType))
+            for (DisciplineUserLink discUsrLink: tempList){
+                User currentUser = discUsrLink.getUser();
+                if (currentUser.getUserType().equals(userType))
+                    result.add(currentUser);
+            }
+
+
+        }else {
+            for (DisciplineUserLink discUsrLink: tempList){
+                User currentUser = discUsrLink.getUser();
                 result.add(currentUser);
-
+            }
         }
 
         return result;

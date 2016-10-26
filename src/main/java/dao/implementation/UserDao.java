@@ -107,14 +107,24 @@ public class UserDao extends AbstractDao {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        Query q = session.createQuery("from User where firstName =:firstName " +
-                "and lastName =:lastName and userType =:userType");
+        if (userType.equals("all")){
+            Query q = session.createQuery("from User where firstName =:firstName " +
+                    "and lastName =:lastName");
 
-        q.setString("firstName",firstName);
-        q.setString("lastName", lastName);
-        q.setString("userType", userType);
+            q.setString("firstName",firstName);
+            q.setString("lastName", lastName);
 
-        result = q.list();
+            result = q.list();
+        }else {
+            Query q = session.createQuery("from User where firstName =:firstName " +
+                    "and lastName =:lastName and userType =:userType");
+
+            q.setString("firstName",firstName);
+            q.setString("lastName", lastName);
+            q.setString("userType", userType);
+
+            result = q.list();
+        }
 
         session.getTransaction().commit();
 

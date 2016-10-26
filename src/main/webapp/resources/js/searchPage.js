@@ -5,72 +5,85 @@
 // autocompletion for search page
 $(document).ready(function() {
 
-    var property = "users";
+    fullNamesAutocomplete();
+
+
+    $(document).on('click', '.dropdown-menu', function (e) {
+        e.stopPropagation();
+    });
+
+    $('select').on('change input', changePlaceHolder);
     
-    if (property === "disciplines"){
-        //autocomletion function
-        $(function() {
-
-            $("#searchField").autocomplete({
-                source : function(request, response) {
-                    $.ajax({
-                        url : "/autocomplete/searchPage",
-                        type : "GET",
-                        data : {
-                            disciplines: request.term
-                        },
-                        dataType : "json",
-                        success : function(data) {
-                            response(data);
-                        }
-                    });
-                }
-            });
-            // $(".ui-autocomplete").css("z-index", "2147483647");
-        });
-    }else {
-        //autocomletion function
-        $(function() {
-
-            $("#searchField").autocomplete({
-                source : function(request, response) {
-                    $.ajax({
-                        url : "/autocomplete/searchPage",
-                        type : "GET",
-                        data : {
-                            users: request.term
-                        },
-                        dataType : "json",
-                        success : function(data) {
-                            response(data);
-                        }
-                    });
-                }
-            });
-            // $(".ui-autocomplete").css("z-index", "2147483647");
-        });
+    function changePlaceHolder() {
+        if ($(this).val() == "byFullName") {
+            $(myInput1).attr("placeholder","Start to type user name");
+            fullNamesAutocomplete();
+        }
+        // if ($(this).val() == "login") {
+        //     $(myInput1).attr("placeholder","Search by login");
+        // }
+        if ($(this).val() == "byDiscipline") {
+            $(myInput1).attr("placeholder","Start to type discipline name");
+            disciplinesAutocomplete();
+        }
     }
-    
+
+    $('#btnSearch').prop("disabled", true);
+
+    $(function() {
+        $("input[id='myInput1']").keyup(function countRemainingChars(){
+            var number = $("input[id='myInput1']").val().length;
+            if(number > 0){
+                $('#btnSearch').prop("disabled", false);
+            }
+            if(number == 0){
+                $('#btnSearch').prop("disabled", true);
+                
+            }
+        });
+    });
 });
 
+function disciplinesAutocomplete() {
+    $("#myInput1").autocomplete({
+        source : function(request, response) {
+            $.ajax({
+                url : "/autocomplete/searchPage",
+                type : "GET",
+                data : {
+                    disciplines: request.term
+                },
+                dataType : "json",
+                success : function(data) {
+                    response(data);
+                }
+            });
+        }
+    });
+    // $(".ui-autocomplete").css("z-index", "2147483647");
+}
 
-$(function() {
-    $('#toggle-one').change(function() {
-        if ($(this).prop('checked')===true) $(this).attr('value', 'coach'); 
-        else $(this).attr('value', 'customer');
+function fullNamesAutocomplete() {
+    $("#myInput1").autocomplete({
+        source : function(request, response) {
+            $.ajax({
+                url : "/autocomplete/searchPage",
+                type : "GET",
+                data : {
+                    users: request.term
+                },
+                dataType : "json",
+                success : function(data) {
+                    response(data);
+                }
+            });
+        }
+    });
+}
 
-        console.log($(this).attr('value'));
-        // $('#console-event').html('Toggle: ' + $(this).prop('checked'))
-    })
-});
 
-$(function() {
-    $('#toggle-two').change(function() {
-        if ($(this).prop('checked')===true) $(this).attr('value', 'byUserName');
-        else $(this).attr('value', 'byDiscipline');
 
-        console.log($(this).attr('value'));
-        // $('#console-event').html('Toggle: ' + $(this).prop('checked'))
-    })
-});
+
+
+
 

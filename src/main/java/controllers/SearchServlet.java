@@ -3,6 +3,7 @@ package controllers;
 import dao.implementation.DisciplineUserLinkDao;
 import dao.implementation.UserDao;
 import model.DisciplineUserLink;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by romab on 10/17/16.
@@ -21,9 +21,7 @@ import java.util.List;
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet {
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
         String searchOption = request.getParameter("searchOption");
         String userTypeOption = request.getParameter("userTypeOption");
@@ -31,43 +29,54 @@ public class SearchServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         List resultList = (List)session.getAttribute("resultList");
+        Map<User,ArrayList<Integer>> resultMap = new HashMap<User,ArrayList<Integer>>();
         UserDao userDao = new UserDao();
         DisciplineUserLinkDao discUsrLnkDao = new DisciplineUserLinkDao();
 
-//        searchOption = "by_discipline";
-//        userTypeOption = "coach";
-
-//        if (userTypeOption == null) userTypeOption = "customer"; else userTypeOption="customer";
-
-        if (searchOption.equals("byUserName")){
+        if (searchOption.equals("byFullName")){
             String fullName [] = searchString.split(" ");
             //search by username
             if (resultList == null){
                 List temp = userDao.read(fullName[0],fullName[1],userTypeOption);
-                session.setAttribute("resultList", temp);
+                session.setAttribute("resultMap", generateResultMap(temp, discUsrLnkDao));
                 response.sendRedirect("../../views/searchPage.jsp");
 
             }else {
-                resultList.clear();
+                resultMap.clear();
                 List temp = userDao.read(fullName[0],fullName[1],userTypeOption);
-                resultList.addAll(temp);
+                resultMap = generateResultMap(temp, discUsrLnkDao);
                 response.sendRedirect("../../views/searchPage.jsp");
-
             }
 
         }else if (searchOption.equals("byDiscipline")){
             //search by discipline
             if (resultList == null){
                 List temp = discUsrLnkDao.find(userTypeOption,searchString);
-                session.setAttribute("resultList", temp);
+                session.setAttribute("resultMap", generateResultMap(temp,discUsrLnkDao));
                 response.sendRedirect("../../views/searchPage.jsp");
 
             }else {
-                resultList.clear();
+                resultMap.clear();
                 List temp = discUsrLnkDao.find(userTypeOption,searchString);
-                resultList.addAll(temp);
+                resultMap = generateResultMap(temp,discUsrLnkDao);
                 response.sendRedirect("../../views/searchPage.jsp");
             }
         }
+    }
+
+    public HashMap<User, ArrayList<Integer> > generateResultMap (List usersList, DisciplineUserLinkDao disciplineUserLinkDao){
+        HashMap<User, ArrayList<Integer> > result = new HashMap<User, ArrayList<Integer>>();
+
+        for (Object user: usersList){
+            List userDisciplineLinks = disciplineUserLinkDao.getUsersDisciplineLinks(((User)user).getId());
+            ArrayList<Integer> iconsIdsTemp = new ArrayList<Integer>();
+            for (Object usrDiscLink: userDisciplineLinks){
+                iconsIdsTemp.add(((DisciplineUserLink)usrDiscLink).getDiscipline().getId());
+            }
+            result.put((User)user,iconsIdsTemp);
+        }
+
+        return result;
+
     }
 }

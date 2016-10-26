@@ -28,39 +28,22 @@ public class SearchServlet extends HttpServlet {
         String searchString = request.getParameter("searchString");
 
         HttpSession session = request.getSession();
-        List resultList = (List)session.getAttribute("resultList");
-        Map<User,ArrayList<Integer>> resultMap = new HashMap<User,ArrayList<Integer>>();
         UserDao userDao = new UserDao();
         DisciplineUserLinkDao discUsrLnkDao = new DisciplineUserLinkDao();
 
         if (searchOption.equals("byFullName")){
             String fullName [] = searchString.split(" ");
             //search by username
-            if (resultList == null){
-                List temp = userDao.read(fullName[0],fullName[1],userTypeOption);
-                session.setAttribute("resultMap", generateResultMap(temp, discUsrLnkDao));
-                response.sendRedirect("../../views/searchPage.jsp");
-
-            }else {
-                resultMap.clear();
-                List temp = userDao.read(fullName[0],fullName[1],userTypeOption);
-                resultMap = generateResultMap(temp, discUsrLnkDao);
-                response.sendRedirect("../../views/searchPage.jsp");
-            }
+            List temp = userDao.read(fullName[0],fullName[1],userTypeOption);
+            session.setAttribute("resultMap", generateResultMap(temp, discUsrLnkDao));
+            response.sendRedirect("../../views/searchPage.jsp");
 
         }else if (searchOption.equals("byDiscipline")){
             //search by discipline
-            if (resultList == null){
-                List temp = discUsrLnkDao.find(userTypeOption,searchString);
-                session.setAttribute("resultMap", generateResultMap(temp,discUsrLnkDao));
-                response.sendRedirect("../../views/searchPage.jsp");
+            List temp = discUsrLnkDao.find(userTypeOption,searchString);
+            session.setAttribute("resultMap", generateResultMap(temp,discUsrLnkDao));
+            response.sendRedirect("../../views/searchPage.jsp");
 
-            }else {
-                resultMap.clear();
-                List temp = discUsrLnkDao.find(userTypeOption,searchString);
-                resultMap = generateResultMap(temp,discUsrLnkDao);
-                response.sendRedirect("../../views/searchPage.jsp");
-            }
         }
     }
 

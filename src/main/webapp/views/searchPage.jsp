@@ -67,6 +67,13 @@
   </div>
 
   <div class="container">
+      <c:if test="${resultMap.isEmpty()}}">
+          <div class="row">
+              <div class="col-lg-12 col-lg-offset-4">
+                  <h2>Sorry, nothing was found</h2>
+              </div>
+          </div>
+      </c:if>
 
       <c:forEach var="resultEntry" items="${resultMap}">
       <div class="row well result-section">

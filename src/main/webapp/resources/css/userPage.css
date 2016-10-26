@@ -15,7 +15,6 @@ body {
     background-color: inherit;
 }
 .avatar{
-
     padding-bottom: 5%;
 }
 .outer_form {
@@ -38,7 +37,6 @@ body {
     /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
     width:inherit;
     height:inherit;
-    /* To center horizontally */
     margin: 0 auto;
     pointer-events:all;
 }
@@ -62,7 +60,7 @@ body {
 #description{
     padding-left: 2%;
 =======
-	position: absolute;
+position: absolute;
 }
 .toggle-grp{
     margin: 30px 0;
@@ -112,6 +110,10 @@ body {
 }
 .disciplines-result i{
     margin: 0px 5px;
+}
+.dropdown-menu{
+    padding: 10px;
+    min-width: 300px;
 }
 footer {
     display: table-footer-group;

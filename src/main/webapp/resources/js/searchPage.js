@@ -54,15 +54,6 @@ $(document).ready(function() {
 });
 
 
-$(document).ready(function() {
-
-    $(function() {
-        $('#toggle-one').bootstrapToggle();
-        $('#toggle-two').bootstrapToggle();
-    })
-    
-});
-
 $(function() {
     $('#toggle-one').change(function() {
         if ($(this).prop('checked')===true) $(this).attr('value', 'coach'); 
@@ -82,3 +73,4 @@ $(function() {
         // $('#console-event').html('Toggle: ' + $(this).prop('checked'))
     })
 });
+

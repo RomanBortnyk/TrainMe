@@ -33,11 +33,8 @@
             
 
             <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 40px; border-radius: 0%"><span class="caret"></span></button>
               <button id="btnSearch" type="button" class="btn btn-default" style="height: 40px;"><i class="fa fa-search" aria-hidden="true"></i></button>
-
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 40px;"><span class="caret"></span></button>
-
-              
 
               <div class="dropdown-menu dropdown-menu-right">
                 <div class="form-group">

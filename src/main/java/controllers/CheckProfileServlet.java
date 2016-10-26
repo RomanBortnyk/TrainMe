@@ -6,6 +6,7 @@ import dao.implementation.UserDao;
 import model.DisciplineUserLink;
 import model.User;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ import java.util.List;
 public class CheckProfileServlet extends HttpServlet{
 
 
-    public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
         String pathParts [] = request.getPathInfo().split("/");
         int userId = Integer.parseInt(pathParts[1]);
@@ -31,17 +32,17 @@ public class CheckProfileServlet extends HttpServlet{
         DisciplineUserLinkDao discUsrLnkDao = new DisciplineUserLinkDao();
 
         User user = userDao.read(userId);
-        List usersFeedbacks = feedbackDao.getUsersFeedbacks(userId);
-        List disciplinesLinks = discUsrLnkDao.getUsersDisciplineLinks(userId);
+        List usersFeedbacksList = feedbackDao.getUsersFeedbacks(userId);
+        List disciplinesLinksList = discUsrLnkDao.getUsersDisciplineLinks(userId);
 
         request.setAttribute("user",user);
-        request.setAttribute("users",usersFeedbacks);
-        request.setAttribute("disciplinesLinks",disciplinesLinks);
+        request.setAttribute("usersFeedbacksList",usersFeedbacksList);
+        request.setAttribute("disciplinesLinks",disciplinesLinksList);
 
-        response.sendRedirect("profile.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("../views/profile.jsp");
+//        response.sendRedirect("../../views/profile.jsp");
 
-
+        rd.forward(request,response);
     }
-
 
 }

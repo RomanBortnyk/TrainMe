@@ -18,8 +18,8 @@
     <script src="../resources/js/bootstrap.min.js"></script>
     <link href="../../resources/css/userPage.css" rel="stylesheet">
     <link href="../resources/css/font-awesome.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="../resources/js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="../resources/css/jquery-ui.min.css">
     <script type="text/javascript" src="../resources/js/userPage.js"></script>
 
 
@@ -84,8 +84,10 @@
                 <h4>${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}</h4>
                 <ul id="disciplinesList" class="list-group">
                     <c:forEach var="link" items="${disciplineLinks}">
-                        <li class="list-group-item"><img src="/image/icon/${link.getDiscipline().getId()}" height="35"
-                                                         width="35" alt="icon">${link.getDiscipline().getName()}</li>
+                        <li class="list-group-item">
+                            <img src="/image/icon/${link.getDiscipline().getId()}" height="35" width="35" alt="icon">
+                            ${link.getDiscipline().getName()}
+                        </li>
                     </c:forEach>
                 </ul>
 
@@ -193,8 +195,12 @@
                         <div class="col-lg-3">
                             <div class="well">
                                 <p>${feedback.getAuthor().getFirstName()}</p>
-                                <img src="/image/avatar/${feedback.getAuthor().getId()}" class="img-circle" height="65"
-                                     width="65" alt="Avatar">
+
+                                <a href="/profile/${feedback.getAuthor().getId()}">
+                                    <img src="/image/avatar/${feedback.getAuthor().getId()}" class="img-circle" height="65"
+                                         width="65" alt="Avatar">
+                                </a>
+
                             </div>
                         </div>
 
@@ -206,9 +212,7 @@
                 </div>
             </div>
             </c:forEach>
-
         </div>
-
     </div>
 </div>
 <%@include file="footer.html" %>

@@ -21,7 +21,6 @@ import java.util.List;
 @WebServlet("/signIn")
 public class SignInServlet extends HttpServlet{
 
-
     public void doPost (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
 
@@ -40,7 +39,6 @@ public class SignInServlet extends HttpServlet{
                 FeedbackDao feedbackDao = new FeedbackDao();
                 List feedbacks = feedbackDao.getUsersFeedbacks(user.getId());
 
-
                 DisciplineUserLinkDao disUslinkDao = new DisciplineUserLinkDao();
                 List disciplineLinks = disUslinkDao.getUsersDisciplineLinks(user.getId());
 
@@ -58,8 +56,6 @@ public class SignInServlet extends HttpServlet{
             request.setAttribute("unexistLogin", true);
             rd2.forward(request,response);
         }
-
-
     }
 
 }

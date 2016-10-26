@@ -75,9 +75,7 @@ public class ModifyUsersDataServlet extends HttpServlet {
         }
 
         if (pathParts[1].equals("description")) {
-
             updateDescription(request, currentUser);
-
         }
 
         response.sendRedirect("../../views/userPage.jsp");

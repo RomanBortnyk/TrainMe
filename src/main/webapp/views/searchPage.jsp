@@ -67,20 +67,15 @@
   </div>
 
   <div class="container">
-      <c:if test="${resultMap.isEmpty()}}">
-          <div class="row">
-              <div class="col-lg-12 col-lg-offset-4">
-                  <h2>Sorry, nothing was found</h2>
-              </div>
-          </div>
-      </c:if>
 
       <c:forEach var="resultEntry" items="${resultMap}">
       <div class="row well result-section">
           <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="col-lg-2 col-md-2 col-sm-3">
+                  <a href="/profile/${resultEntry.key.getId()}">
                       <img id="avatar" src="/image/avatar/${resultEntry.key.getId()}"
                            width="140px" height="140px" class="img-circle" alt="Avatar">
+                  </a>
               </div>
               <div class="col-lg-2 col-md-2 col-sm-3 name-result">
                   <p>${resultEntry.key.getFirstName()}</p>
@@ -99,7 +94,6 @@
                               <p>discipline1</p>
                           </div>
                       </c:forEach>
-
                   </div>
               </div>
           </div>

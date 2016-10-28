@@ -4,28 +4,6 @@
 
 // autocompletion for search page
 $(document).ready(function() {
-
-    // //autocomletion function
-    // $(function() {
-    //
-    //     $("#disciplineAutocomplete").autocomplete({
-    //         source : function(request, response) {
-    //             $.ajax({
-    //                 url : "/autocomplete",
-    //                 type : "GET",
-    //                 data : {
-    //                     disciplines: request.term
-    //                 },
-    //                 dataType : "json",
-    //                 success : function(data) {
-    //                     response(data);
-    //                 },
-    //             });
-    //         },
-    //     });
-    //     $(".ui-autocomplete").css("z-index", "2147483647");
-    // });
-
     
     $(function () {
         $.ajax({

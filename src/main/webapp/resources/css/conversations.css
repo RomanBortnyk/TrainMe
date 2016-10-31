@@ -1,6 +1,14 @@
-body{
-    margin-top:20px;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: table;
     background:#eee;
+}
+.navbar{
+    border-radius: 0;
 }
 input:focus{
     border-color: transparent;
@@ -18,6 +26,7 @@ input:focus{
 }
 .chat {
     height: calc(100vh - 40px);
+    margin-bottom: 20px;
 }
 .decor-default {
     background-color: #ffffff;
@@ -260,4 +269,13 @@ input:focus{
 .chat input {
     -webkit-appearance: none;
     border-radius: 0;
+}
+footer {
+    display: table-footer-group;
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+footer p{
+    margin: 20px 0;
 }

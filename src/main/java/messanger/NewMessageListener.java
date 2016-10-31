@@ -1,18 +1,20 @@
 package messanger;
 
+import model.Message;
+import model.User;
+
 /**
  * Created by romab on 10/28/16.
  */
 public class NewMessageListener implements Observer {
 
     private Message currentMessage;
-    private String waitObject;
+    private User currentUser;
 
 //    private String chatId;
 
-
-    public NewMessageListener(String waitObject) {
-        this.waitObject = waitObject;
+    public NewMessageListener(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     public void update(Message message) {
@@ -20,13 +22,12 @@ public class NewMessageListener implements Observer {
     }
 
 
-
     public void justWait(){
         try {
 
-            synchronized (waitObject){
+            synchronized (currentUser){
 
-                waitObject.wait();
+                currentUser.wait();
             }
         }catch (InterruptedException e){
             e.printStackTrace();
@@ -37,9 +38,19 @@ public class NewMessageListener implements Observer {
         return currentMessage.getText();
     }
 
-    public String getMessageAuthor(){
-        return currentMessage.getAuthor();
+    public Message getCurrentMessage() {
+        return currentMessage;
     }
 
+    public void setCurrentMessage(Message currentMessage) {
+        this.currentMessage = currentMessage;
+    }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 }

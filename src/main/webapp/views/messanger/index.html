@@ -1,0 +1,107 @@
+<!--<%&#45;&#45;-->
+  <!--Created by IntelliJ IDEA.-->
+  <!--User: romab-->
+  <!--Date: 10/27/16-->
+  <!--Time: 10:22 PM-->
+  <!--To change this template use File | Settings | File Templates.-->
+<!--&#45;&#45;%>-->
+<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
+<html>
+<head>
+    <title>Title</title>
+
+    <script src="../../resources/js/"></script>
+
+</head>
+<body>
+<h3>Chat</h3>
+
+<div id="userRegistration">
+
+    <input placeholder="your name " id="userName" type="text">
+    <button id="register">Enter</button>
+</div>
+
+<div id="messages" style="width: 30%; height: 30%; overflow: scroll; visibility: hidden">
+
+</div>
+
+
+<div id="sendDiv" style="visibility: hidden; width: 30%">
+
+    <input placeholder="start to type your message here" id="input"type="text" style="width: 100%">
+
+</div>
+
+
+
+<script>
+
+    $("#input").bind("enterKey", function () {
+        send();
+    });
+
+    $('#input').keyup(function(e){
+        if(e.keyCode == 13)
+        {
+            $(this).trigger("enterKey");
+        }
+    });
+
+    var userName;
+
+    $("#register").on("click",function () {
+
+        userName = $("#userName").val();
+        $("#userRegistration").hide();
+        $("#sendDiv").css("visibility","visible");
+        $("#messages").css("visibility","visible");
+
+        long_polling();
+
+    });
+
+    function long_polling() {
+//        var currentUser = {login:"vasil"};
+        $.ajax({
+            url: "/sendEventListenerRequest",
+//            data: currentUser,
+            dataType: "json",
+            success: function (event) {
+                processEvent(event);
+                long_polling();
+            }
+        });
+    }
+
+
+    function processEvent(event) {
+        $("#messages").append('<span>' + event[0] + '</span><br/>');
+
+        var objDiv = document.getElementById("messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+
+
+    function send() {
+
+        var message = {
+            author: userName,
+            messageText: $("#input").val()
+        };
+
+        $.ajax({
+            url:'/sendEvent',
+            data: message,
+            dataType:"json"
+        });
+        $("#input").val("");
+    }
+
+
+
+</script>
+
+</body>
+</html>

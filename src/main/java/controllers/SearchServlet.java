@@ -2,6 +2,7 @@ package controllers;
 
 import dao.implementation.DisciplineUserLinkDao;
 import dao.implementation.UserDao;
+import model.Discipline;
 import model.DisciplineUserLink;
 import model.User;
 
@@ -47,14 +48,14 @@ public class SearchServlet extends HttpServlet {
         }
     }
 
-    public HashMap<User, ArrayList<Integer> > generateResultMap (List usersList, DisciplineUserLinkDao disciplineUserLinkDao){
-        HashMap<User, ArrayList<Integer> > result = new HashMap<User, ArrayList<Integer>>();
+    public HashMap<User, ArrayList<Discipline> > generateResultMap (List usersList, DisciplineUserLinkDao disciplineUserLinkDao){
+        HashMap<User, ArrayList<Discipline> > result = new HashMap<User, ArrayList<Discipline>>();
 
         for (Object user: usersList){
             List userDisciplineLinks = disciplineUserLinkDao.getUsersDisciplineLinks(((User)user).getId());
-            ArrayList<Integer> iconsIdsTemp = new ArrayList<Integer>();
+            ArrayList<Discipline> iconsIdsTemp = new ArrayList<Discipline>();
             for (Object usrDiscLink: userDisciplineLinks){
-                iconsIdsTemp.add(((DisciplineUserLink)usrDiscLink).getDiscipline().getId());
+                iconsIdsTemp.add(((DisciplineUserLink)usrDiscLink).getDiscipline());
             }
             result.put((User)user,iconsIdsTemp);
         }

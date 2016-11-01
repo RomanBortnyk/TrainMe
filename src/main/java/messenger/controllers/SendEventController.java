@@ -1,8 +1,8 @@
-package messanger.controllers;
+package messenger.controllers;
 
 
-import messanger.Database;
-import messanger.NewMessageListener;
+import messenger.Database;
+import messenger.NewMessageListener;
 import model.User;
 import org.codehaus.jettison.json.JSONArray;
 

@@ -42,7 +42,7 @@ input:focus{
     position: relative;
     display: block;
     cursor: pointer;
-    padding: 0px 0 10px 50px;
+    padding: 10px 0 10px 50px;
 }
 .chat-users .user .avatar {
     top: 10px;

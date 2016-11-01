@@ -1,4 +1,4 @@
-package messanger;
+package messenger;
 
 import dao.implementation.ChatDao;
 import dao.implementation.MessageDao;
@@ -7,7 +7,6 @@ import model.Message;
 import model.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**

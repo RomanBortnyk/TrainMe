@@ -17,6 +17,7 @@
     <script src="../resources/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
     <script src="../resources/js/jquery.nicescroll.min.js"></script>
+    <script src="../resources/js/conversations.js"></script>
 
     <link rel="stylesheet" href="../resources/css/conversations.css" >
 
@@ -36,7 +37,7 @@
 
                     <c:forEach var="chat" items="${usersChatsList}">
                         <%--${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}--%>
-                        <div class="user">
+                        <div id="${chat.getId()}" class="user">
                             <div class="avatar">
                                 <img src="/image/avatar/${chat.getUser2().getId()}"  alt="User name">
                                 <%--<div class="status off"></div>--%>
@@ -48,13 +49,12 @@
                         </div>
                     </c:forEach>
 
-
                 </div>
             </div>
         </div>
         <div class="col-sm-9 col-xs-12 chat" style="overflow: hidden; outline: none;" tabindex="5001">
             <div class="col-inside-lg decor-default">
-                <div class="chat-body">
+                <div class="chat-body" style="overflow: scroll">
                     <h6>Mini Chat</h6>
 
                     <div class="answer left">
@@ -72,6 +72,7 @@
                         <div class="time">5 min ago</div>
                     </div>
 
+
                     <div class="answer left bkg">
                         <div class="avatar">
                             <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
@@ -85,7 +86,7 @@
 
                     </div>
 
-                    <div class="answer-add">
+                    <div class="answer-add" style="position: absolute; bottom: 0">
                         <input placeholder="Write a message">
                         <span class="answer-btn answer-btn-1"></span>
                         <span class="answer-btn answer-btn-2"></span>
@@ -98,14 +99,70 @@
 </div>
 
 <script type="text/javascript">
-    $(function(){
-        $(".chat").niceScroll();
-    })
 
     $(".chat-users").on("click", ".user", function(){
-        $(".chat-users .user").removeClass("activeUser");
-        $(this).addClass("activeUser");
+
+        if ( !$(this).hasClass("activeUser") ){
+            $(".chat-users .user").removeClass("activeUser");
+            $(this).addClass("activeUser");
+            cleanMessageList();
+            refreshMessagesList();
+        }
+
     });
+
+    
+    function cleanMessageList() {
+        $(".chat-body").empty()
+    }
+
+    function refreshMessagesList() {
+
+        var currentChatId = $(".activeUser").attr('id');
+        var url = "/messenger/chatMessages/";
+
+        $.ajax({
+            url : "/messenger/chatMessages/"+currentChatId,
+            type : "GET",
+//            data : {
+//                disciplines: request.term
+//            },
+            dataType : "json",
+            success : function(data) {
+                response(data);
+            }
+        });
+    }
+
+    function response(data) {
+
+        $.each(data, function(index, element) {
+//            console.log(element.authorId);
+
+            <%--var authorName = ${currentSessionUser.getId()==authorId }--%>
+            var id=element.authorId;
+            var name = element.authorName;
+            var text = element.text;
+
+            var large = '<div class="answer left"> ' +
+                    '<div class="avatar"> ' +
+                        '<img src="/image/avatar/'+id+'" alt="User name"> ' +
+                        '<div class="status offline"></div> ' +
+                    '</div> ' +
+                    '<div class="name">'+name+'</div> ' +
+                    '<div class="text">'+text+'</div> ' +
+                    '<div class="time">5 min ago</div> </div>';
+
+
+            $('.chat-body').append(large)
+
+        });
+
+
+        var objDiv = document.getElementById(".chat-body");
+        objDiv.scrollTop = objDiv.scrollHeight;
+
+    }
 
 </script>
 

@@ -1,9 +1,8 @@
-package messanger.controllers;
+package messenger.controllers;
 
 
 import dao.implementation.ChatDao;
-import messanger.Database;
-import model.Chat;
+import messenger.Database;
 import model.Message;
 import model.User;
 
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 

@@ -4,6 +4,7 @@ package dao.implementation;
 import dao.interfaces.AbstractDao;
 import model.Chat;
 import model.Item;
+import model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import persistence.HibernateUtil;
@@ -28,7 +29,7 @@ public class ChatDao extends AbstractDao {
 
     public List<Chat> getUserChats (int userId){
 
-        List result;
+        List<Chat> result;
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -41,6 +42,15 @@ public class ChatDao extends AbstractDao {
         result = q.list();
 
         session.getTransaction().commit();
+
+
+        for (Chat chat : result){
+            if (chat.getUser1().getId()!=userId){
+                User tempUser = chat.getUser1();
+                chat.setUser1(chat.getUser2());
+                chat.setUser2(tempUser);
+            }
+        }
 
         return result;
 

@@ -24,6 +24,8 @@
 <body>
 <%@ page isELIgnored="false" %>
 <%@include file="header.html"%>
+<jsp:useBean id="currentSessionUser" class="model.User" scope="session"></jsp:useBean>
+
 
 <div class="content container-fluid bootstrap snippets">
     <div class="row row-broken">
@@ -31,38 +33,22 @@
             <div class="col-inside-lg decor-default chat" style="overflow: hidden; outline: none;" tabindex="5000">
                 <div class="chat-users">
                     <h6>Online</h6>
-                    <div class="user">
-                        <div class="avatar">
-                            <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                            <div class="status off"></div>
+
+                    <c:forEach var="chat" items="${usersChatsList}">
+                        <%--${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}--%>
+                        <div class="user">
+                            <div class="avatar">
+                                <img src="/image/avatar/${chat.getUser2().getId()}"  alt="User name">
+                                <%--<div class="status off"></div>--%>
+                            </div>
+                            <div class="name">${chat.getUser2().getFirstName()}</div>
+                            <div class="name">${chat.getUser2().getLastName()}</div>
+
+                        <%--<div class="name">User mood</div>--%>
                         </div>
-                        <div class="name">User name</div>
-                        <div class="mood">User mood</div>
-                    </div>
-                    <div class="user">
-                        <div class="avatar">
-                            <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                            <div class="status online"></div>
-                        </div>
-                        <div class="name">User name</div>
-                        <div class="mood">User mood</div>
-                    </div>
-                    <div class="user">
-                        <div class="avatar">
-                            <img src="http://bootdey.com/img/Content/avatar/avatar3.png" alt="User name">
-                            <div class="status busy"></div>
-                        </div>
-                        <div class="name">User name</div>
-                        <div class="mood">User mood</div>
-                    </div>
-                    <div class="user">
-                        <div class="avatar">
-                            <img src="http://bootdey.com/img/Content/avatar/avatar4.png" alt="User name">
-                            <div class="status offline"></div>
-                        </div>
-                        <div class="name">User name</div>
-                        <div class="mood">User mood</div>
-                    </div>
+                    </c:forEach>
+
+
                 </div>
             </div>
         </div>

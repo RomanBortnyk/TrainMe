@@ -88,10 +88,10 @@
               <div class="col-lg-2 col-md-2 col-sm-12">
                   <div class="pull-right disciplines-result">
 
-                      <c:forEach var="iconId" items="${resultEntry.value}">
+                      <c:forEach var="discipline" items="${resultEntry.value}">
                           <div>
-                              <img height="35px" width="35px" src="/image/icon/${iconId}">
-                              <p>discipline1</p>
+                              <img height="35px" width="35px" src="/image/icon/${discipline.getId()}">
+                              <p>${discipline.getName()}</p>
                           </div>
                       </c:forEach>
                   </div>

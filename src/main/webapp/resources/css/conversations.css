@@ -39,6 +39,12 @@ input:focus{
 }
 .chat-users .user {
     position: relative;
+    display: block;
+    cursor: pointer;
+    padding: 10px 0 10px 50px;
+}
+.chat-users .user .avatar {
+    top: 10px;
     padding: 0 0 0 50px;
     display: block;
     cursor: pointer;
@@ -278,4 +284,7 @@ footer {
 }
 footer p{
     margin: 20px 0;
+}
+.chat-users .user.activeUser{
+    background: rgb(173, 201, 255);
 }

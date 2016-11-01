@@ -10,6 +10,7 @@ body {
 .navbar{
     border-radius: 0;
 }
+
 input:focus{
     border-color: transparent;
     box-shadow: 0 0px 0px;

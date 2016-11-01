@@ -115,6 +115,12 @@
     $(function(){
         $(".chat").niceScroll();
     })
+
+    $(".chat-users").on("click", ".user", function(){
+        $(".chat-users .user").removeClass("activeUser");
+        $(this).addClass("activeUser");
+    });
+
 </script>
 
 <%@include file="footer.html"%>

@@ -182,7 +182,6 @@ input:focus{
     position: relative;
     padding-bottom: 1px;
 }
-/*RIGHT*/
 .chat-body .answer.right {
     padding: 0 58px 0 0;
     text-align: right;

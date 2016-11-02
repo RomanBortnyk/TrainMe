@@ -16,27 +16,18 @@ input:focus{
     box-shadow: 0 0px 0px;
     outline: 0 none;
 }
-.nicescroll-cursors {
-    background-color: rgb(43, 71, 136) !important;
-}
 .row.row-broken {
     padding-bottom: 0;
 }
 .col-inside-lg {
-    padding: 20px;
+    padding: 0 20px;
 }
 .chat {
-    height: calc(100vh - 40px);
-    margin-bottom: 20px;
+    overflow-y: scroll;
+    margin-bottom: 80px;
 }
 .decor-default {
     background-color: #ffffff;
-}
-.chat-users h6 {
-    font-size: 20px;
-    padding-bottom: 5px;
-    border-bottom: 2px solid rgb(43, 71, 136);
-    margin: 0 0 15px;
 }
 .chat-users .user {
     position: relative;
@@ -52,7 +43,7 @@ input:focus{
     margin: 0 0 20px;
 }
 .chat-users .user .avatar {
-    top: 0;
+    top: 10px;
     left: 0;
 }
 .chat .avatar {
@@ -104,11 +95,11 @@ input:focus{
 }
 
 /*****************CHAT BODY *******************/
-.chat-body h6 {
+.decor-default h6 {
     font-size: 20px;
-    padding-bottom: 5px;
+    padding: 10px;
     border-bottom: 2px solid rgb(43, 71, 136);
-    margin: 0 0 15px;
+    margin: 0;
 }
 .chat-body .answer.left {
     padding: 0 0 0 58px;
@@ -197,7 +188,6 @@ input:focus{
     text-align: right;
     float: right;
 }
-
 .chat-body .answer.right .avatar {
     right: 0;
 }
@@ -220,14 +210,16 @@ input:focus{
 }
 
 /**************ADD FORM ***************/
-.chat-body .answer-add {
+.answer-add {
     clear: both;
     position: relative;
-    margin: 20px -20px -20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -60px;
     padding: 20px;
     background: rgb(43, 71, 136);
 }
-.chat-body .answer-add input {
+.answer-add input {
     border: none;
     background: none;
     display: block;
@@ -241,11 +233,11 @@ input:focus{
     -webkit-appearance: none;
     border-radius: 0;
 }
-.chat-body .answer-add .answer-btn-1 {
+.answer-add .answer-btn-1 {
     background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-40.png") 50% 50% no-repeat;
     right: 56px;
 }
-.chat-body .answer-add .answer-btn {
+.answer-add .answer-btn {
     display: block;
     cursor: pointer;
     width: 36px;
@@ -254,26 +246,26 @@ input:focus{
     top: 50%;
     margin-top: -18px;
 }
-.chat-body .answer-add .answer-btn-2 {
+.answer-add .answer-btn-2 {
     background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-41.png") 50% 50% no-repeat;
     right: 20px;
 }
-.chat input::-webkit-input-placeholder {
+input::-webkit-input-placeholder {
     color: #fff;
 }
 
-.chat input:-moz-placeholder { /* Firefox 18- */
+input:-moz-placeholder { /* Firefox 18- */
     color: #fff;
 }
 
-.chat input::-moz-placeholder {  /* Firefox 19+ */
+input::-moz-placeholder {  /* Firefox 19+ */
     color: #fff;
 }
 
-.chat input:-ms-input-placeholder {
+input:-ms-input-placeholder {
     color: #fff;
 }
-.chat input {
+input {
     -webkit-appearance: none;
     border-radius: 0;
 }
@@ -288,4 +280,35 @@ footer p{
 }
 .chat-users .user.activeUser{
     background: rgb(173, 201, 255);
+}
+::-webkit-scrollbar-button {
+background-image:url('');
+background-repeat:no-repeat;
+width:5px;
+height:0px
+}
+
+::-webkit-scrollbar-track {
+background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+-webkit-border-radius: 0px;
+border-radius: 0px;
+background-color:rgb(173, 201, 255);
+}
+
+::-webkit-scrollbar-thumb:hover{
+background-color:#56999f;
+}
+
+::-webkit-resizer{
+background-image:url('');
+background-repeat:no-repeat;
+width:4px;
+height:0px
+}
+
+::-webkit-scrollbar{
+width: 4px;
 }

@@ -16,7 +16,6 @@
     <script src="../resources/js/jquery-3.1.1.min.js"></script>
     <script src="../resources/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
-    <script src="../resources/js/jquery.nicescroll.min.js"></script>
     <script src="../resources/js/conversations.js"></script>
 
     <link rel="stylesheet" href="../resources/css/conversations.css" >
@@ -31,142 +30,110 @@
 <div class="content container-fluid bootstrap snippets">
     <div class="row row-broken">
         <div class="col-sm-3 col-xs-12">
-            <div class="col-inside-lg decor-default chat" style="overflow: hidden; outline: none;" tabindex="5000">
-                <div class="chat-users">
-                    <h6>Online</h6>
+            <div class="col-inside-lg decor-default friends-list" style="outline: none;" tabindex="5000">
+                <h6>My conversations</h6>
+                <div class="chat">
+                    <div class="chat-users" style="padding-top: 10px;">
 
-                    <c:forEach var="chat" items="${usersChatsList}">
-                        <%--${currentSessionUser.userType.equals("customer") ? "Interests" : "Coach specialization"}--%>
-                        <div id="${chat.getId()}" class="user">
-                            <div class="avatar">
-                                <img src="/image/avatar/${chat.getUser2().getId()}"  alt="User name">
-                                <%--<div class="status off"></div>--%>
+                        <c:forEach var="chat" items="${usersChatsList}">
+                            <div id="${chat.getId()}" class="user">
+                                <div class="avatar">
+                                    <img src="/image/avatar/${chat.getUser2().getId()}"  alt="User name">
+                                </div>
+                                <div id="firstName" class="name">${chat.getUser2().getFirstName()}</div>
+                                <div id="lastName" class="name">${chat.getUser2().getLastName()}</div>
                             </div>
-                            <div class="name">${chat.getUser2().getFirstName()}</div>
-                            <div class="name">${chat.getUser2().getLastName()}</div>
+                        </c:forEach>
 
-                        <%--<div class="name">User mood</div>--%>
+                        <div class="user">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
+                                <div class="status off"></div>
+                            </div>
+                            <div class="name">User name</div>
+                            <div class="mood">User mood</div>
                         </div>
-                    </c:forEach>
-
+                    </div>
                 </div>
+
+
             </div>
         </div>
-        <div class="col-sm-9 col-xs-12 chat" style="overflow: hidden; outline: none;" tabindex="5001">
+        <div class="col-sm-9 col-xs-12 " style="outline: none;" tabindex="5001">
             <div class="col-inside-lg decor-default">
-                <div class="chat-body" style="overflow: scroll">
-                    <h6>Mini Chat</h6>
-
-                    <div class="answer left">
-
-                        <div class="avatar">
-                            <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                            <div class="status offline"></div>
+                <h6 id="chatTitle"></h6>
+                <div class="chat">
+                    <div class="chat-body">
+                        <div class="answer left">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
+                                <div class="status offline"></div>
+                            </div>
+                            <div class="name">Alexander Herthic</div>
+                            <div class="text">
+                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
+                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            </div>
+                            <div class="time">5 min ago</div>
                         </div>
 
-                        <div class="name">Alexander Herthic</div>
-                        <div class="text">
-                            Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                        <div class="answer left bkg">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                <div class="status offline"></div>
+                            </div>
+                            <div class="name">Alexander Herthic</div>
+                            <div class="text">
+                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
+                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            </div>
+                            <div class="time">5 min ago</div>
                         </div>
-
-                        <div class="time">5 min ago</div>
+                        <div class="answer left bkg">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                <div class="status offline"></div>
+                            </div>
+                            <div class="name">Alexander Herthic</div>
+                            <div class="text">
+                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
+                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            </div>
+                            <div class="time">5 min ago</div>
+                        </div>
+                        <div class="answer left bkg">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                <div class="status offline"></div>
+                            </div>
+                            <div class="name">Alexander Herthic</div>
+                            <div class="text">
+                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
+                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            </div>
+                            <div class="time">5 min ago</div>
+                        </div>
                     </div>
-
-
-                    <div class="answer left bkg">
-                        <div class="avatar">
-                            <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                            <div class="status offline"></div>
-                        </div>
-                        <div class="name">Alexander Herthic</div>
-                        <div class="text">
-                            Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                        </div>
-                        <div class="time">5 min ago</div>
-
-                    </div>
-
-                    <div class="answer-add" style="position: absolute; bottom: 0">
-                        <input placeholder="Write a message">
-                        <span class="answer-btn answer-btn-1"></span>
-                        <span class="answer-btn answer-btn-2"></span>
-                    </div>
-
+                </div>
+                <div class="answer-add">
+                    <input placeholder="Write a message">
+                    <span class="answer-btn answer-btn-1"></span>
+                    <span class="answer-btn answer-btn-2"></span>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<%@include file="footer.html"%>
+
 <script type="text/javascript">
 
-    $(".chat-users").on("click", ".user", function(){
 
-        if ( !$(this).hasClass("activeUser") ){
-            $(".chat-users .user").removeClass("activeUser");
-            $(this).addClass("activeUser");
-            cleanMessageList();
-            refreshMessagesList();
-        }
-
-    });
-
-    
-    function cleanMessageList() {
-        $(".chat-body").empty()
-    }
-
-    function refreshMessagesList() {
-
-        var currentChatId = $(".activeUser").attr('id');
-        var url = "/messenger/chatMessages/";
-
-        $.ajax({
-            url : "/messenger/chatMessages/"+currentChatId,
-            type : "GET",
-//            data : {
-//                disciplines: request.term
-//            },
-            dataType : "json",
-            success : function(data) {
-                response(data);
-            }
-        });
-    }
-
-    function response(data) {
-
-        $.each(data, function(index, element) {
-//            console.log(element.authorId);
-
-            <%--var authorName = ${currentSessionUser.getId()==authorId }--%>
-            var id=element.authorId;
-            var name = element.authorName;
-            var text = element.text;
-
-            var large = '<div class="answer left"> ' +
-                    '<div class="avatar"> ' +
-                        '<img src="/image/avatar/'+id+'" alt="User name"> ' +
-                        '<div class="status offline"></div> ' +
-                    '</div> ' +
-                    '<div class="name">'+name+'</div> ' +
-                    '<div class="text">'+text+'</div> ' +
-                    '<div class="time">5 min ago</div> </div>';
-
-
-            $('.chat-body').append(large)
-
-        });
-
-
-        var objDiv = document.getElementById(".chat-body");
-        objDiv.scrollTop = objDiv.scrollHeight;
-
-    }
 
 </script>
 
-<%@include file="footer.html"%>
+
 
 </body>
 </html>

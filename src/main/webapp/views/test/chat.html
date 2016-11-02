@@ -157,9 +157,8 @@
         });
          $(window).resize();
 
-         $scrollBottom = $(window).scrollTop() + $(window).height();
-         $objDiv = $(".chat");
-         $objDiv.scrollTop($scrollBottom);
+         $scrollBottom = $(window).scrollTop() + $(".chat").height();
+         $(".chat").scrollTop($scrollBottom);
 
      </script>
  </body>

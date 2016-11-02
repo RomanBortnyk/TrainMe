@@ -182,7 +182,6 @@ input:focus{
     position: relative;
     padding-bottom: 1px;
 }
-/*RIGHT*/
 .chat-body .answer.right {
     padding: 0 58px 0 0;
     text-align: right;
@@ -250,22 +249,22 @@ input:focus{
     background: url("http://91.234.35.26/iwiki-admin/v1.0.0/admin/img/icon-41.png") 50% 50% no-repeat;
     right: 20px;
 }
-.chat input::-webkit-input-placeholder {
+input::-webkit-input-placeholder {
     color: #fff;
 }
 
-.chat input:-moz-placeholder { /* Firefox 18- */
+input:-moz-placeholder { /* Firefox 18- */
     color: #fff;
 }
 
-.chat input::-moz-placeholder {  /* Firefox 19+ */
+input::-moz-placeholder {  /* Firefox 19+ */
     color: #fff;
 }
 
-.chat input:-ms-input-placeholder {
+input:-ms-input-placeholder {
     color: #fff;
 }
-.chat input {
+input {
     -webkit-appearance: none;
     border-radius: 0;
 }

@@ -55,7 +55,8 @@ public class SendEventController extends HttpServlet {
         peer.setContentType("application/json");
         asyncContext.complete();
 
-
+        database.getWaitingUsers().remove(currentUser);
+        database.getObservers().remove(newMsgListener);
 //
 //
 //

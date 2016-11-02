@@ -50,6 +50,13 @@ public class Database implements Observable {
         }
     }
 
+    public List<Observer> getObservers() {
+        return observers;
+    }
+
+    public void setObservers(List<Observer> observers) {
+        this.observers = observers;
+    }
 
     public void registerObserver(Observer o) {
         observers.add(o);

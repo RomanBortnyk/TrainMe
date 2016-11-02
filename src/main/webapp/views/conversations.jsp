@@ -56,61 +56,13 @@
                 <h6 id="chatTitle"></h6>
                 <div id="chat" class="chat">
                     <div  class="chat-body">
-                        <div class="answer left">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                <div class="status offline"></div>
-                            </div>
-                            <div class="name">Alexander Herthic</div>
-                            <div class="text">
-                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
-                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            </div>
-                            <div class="time">5 min ago</div>
-                        </div>
 
-                        <div class="answer left bkg">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                <div class="status offline"></div>
-                            </div>
-                            <div class="name">Alexander Herthic</div>
-                            <div class="text">
-                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
-                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            </div>
-                            <div class="time">5 min ago</div>
-                        </div>
-                        <div class="answer left bkg">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                <div class="status offline"></div>
-                            </div>
-                            <div class="name">Alexander Herthic</div>
-                            <div class="text">
-                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
-                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            </div>
-                            <div class="time">5 min ago</div>
-                        </div>
-                        <div class="answer left bkg">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                <div class="status offline"></div>
-                            </div>
-                            <div class="name">Alexander Herthic</div>
-                            <div class="text">
-                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
-                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            </div>
-                            <div class="time">5 min ago</div>
-                        </div>
                     </div>
                 </div>
                 <div class="answer-add">
                     <input id="inputMessageField" placeholder="Write a message">
-                    <span class="answer-btn answer-btn-1"></span>
-                    <span class="answer-btn answer-btn-2"></span>
+                    <%--<span  class="answer-btn answer-btn-1"></span>--%>
+                    <span id="sentIcon" class="answer-btn answer-btn-2"></span>
                 </div>
             </div>
         </div>
@@ -139,7 +91,7 @@
     function processMessage(message) {
 
         console.log(message.text);
-
+        var currentUserId = ${currentSessionUser.id};
 
         var id=message.authorId;
         var name = message.authorName;
@@ -149,7 +101,7 @@
 
         if (message.chatId.toString() === activeChatId ){
 
-            var messageBlock = '<div class="answer left"> ' +
+            var messageBlock = '<div class="answer left '+ (currentUserId === id ? "":"bkg")+'"> ' +
                     '<div class="avatar"> ' +
                     '<img src="/image/avatar/'+id+'" alt="User name"> ' +
                     '<div class="status offline"></div> ' +

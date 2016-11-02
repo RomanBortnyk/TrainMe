@@ -45,34 +45,36 @@ $( document ).ready(function() {
         }
     });
 
+    $("#sentIcon").on('click',send())
 
-    
-    
+
 
 });
 
 
 function send() {
 
-    var chatId = $(".activeUser").attr("id");
-
     var messageField = $('#inputMessageField');
+    if (messageField.val() !== ""){
+        var chatId = $(".activeUser").attr("id");
 
-    var message = {
-        chatId: chatId,
-        messageText: messageField.val()
-    };
+        var message = {
+            chatId: chatId,
+            messageText: messageField.val()
+        };
 
-    $.ajax({
-        url:'/sendEvent',
-        data: message,
-        dataType:"json",
-        success:function(res){
-            console.log("message was sent");
-        }
+        $.ajax({
+            url:'/sendEvent',
+            data: message,
+            dataType:"json",
+            success:function(res){
+                console.log("message was sent");
+            }
 
-    });
-    messageField.val("");
+        });
+        messageField.val("");
+    }
+    
 }
 
 function cleanMessageList() {
@@ -96,20 +98,21 @@ function refreshMessagesList() {
 
 function response(data) {
 
+
+     var activeUserName = $(".activeUser").find("#firstName").text();
+
     $.each(data, function(index, element) {
 
         var id=element.authorId;
         var name = element.authorName;
         var text = element.text;
 
-        var large = '<div class="answer left"> ' +
+        var large = '<div class="answer left '+ (activeUserName === name ? "bkg":"")+'"> ' +
             '<div class="avatar"> ' +
             '<img src="/image/avatar/'+id+'" alt="User name"> ' +
-            '<div class="status offline"></div> ' +
             '</div> ' +
             '<div class="name">'+name+'</div> ' +
-            '<div class="text">'+text+'</div> ' +
-            '<div class="time">5 min ago</div> </div>';
+            '<div class="text">'+text+'</div> ' ;
 
         $('.chat-body').append(large)
 

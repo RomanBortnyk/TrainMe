@@ -91,80 +91,74 @@
                             <div class="time">5 min ago</div>
                         </div>
 
-                        <div class="answer left">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                <div class="status offline"></div>
+                            <div class="answer left bkg">
+                                <div class="avatar">
+                                    <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                    <div class="status offline"></div>
+                                </div>
+                                <div class="name">Alexander Herthic</div>
+                                <div class="text">
+                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                                </div>
+                                <div class="time">5 min ago</div>
                             </div>
-                            <div class="name">Alexander Herthic</div>
-                            <div class="text">
-                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            <div class="answer left bkg">
+                                <div class="avatar">
+                                    <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                    <div class="status offline"></div>
+                                </div>
+                                <div class="name">Alexander Herthic</div>
+                                <div class="text">
+                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                                </div>
+                                <div class="time">5 min ago</div>
                             </div>
-                            <div class="time">5 min ago</div>
-                        </div>
-
-
-                        <div class="answer left">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                <div class="status offline"></div>
+                            <div class="answer left bkg">
+                                <div class="avatar">
+                                    <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                    <div class="status offline"></div>
+                                </div>
+                                <div class="name">Alexander Herthic</div>
+                                <div class="text">
+                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                                </div>
+                                <div class="time">5 min ago</div>
                             </div>
-                            <div class="name">Alexander Herthic</div>
-                            <div class="text">
-                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            </div>
-                            <div class="time">5 min ago</div>
-                        </div>
-
-
-                        <div class="answer left">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                <div class="status offline"></div>
-                            </div>
-                            <div class="name">Alexander Herthic</div>
-                            <div class="text">
-                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            </div>
-                            <div class="time">5 min ago</div>
-                        </div>
-
-                        <div class="answer left bkg">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                <div class="status offline"></div>
-                            </div>
-                            <div class="name">Alexander Herthic</div>
-                            <div class="text">
-                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            </div>
-                            <div class="time">5 min ago</div>
-                        </div>
-                        <div class="answer-add">
-                            <input placeholder="Write a message">
-                            <span class="answer-btn answer-btn-1"></span>
-                            <span class="answer-btn answer-btn-2"></span>
                         </div>
                     </div>
-                </div>
+                    <div class="answer-add">
+                        <input placeholder="Write a message">
+                        <span class="answer-btn answer-btn-1"></span>
+                        <span class="answer-btn answer-btn-2"></span>
+                    </div>
+                </div></div>
             </div>
         </div>
-    </div>
-    <footer class="container-fluid text-center">
-        <p>Train Me service</p>
-    </footer>
-    <script type="text/javascript">
-       $(function(){
-        $(".chat").niceScroll();
-         });
 
+        <footer class="container-fluid text-center">
+            <p>Train Me service</p>
+        </footer>
+        <script type="text/javascript">
 
-        $(".chat-users").on("click", ".user", function(){
+         $(".chat-users").on("click", ".user", function(){
             $(".chat-users .user").removeClass("activeUser");
             $(this).addClass("activeUser");
         });
 
-    </script>
+         $(window).resize(function(){
+            $h = $(window).outerHeight()
+            $('.chat').css({
+                height: $h - $('.navbar').outerHeight() - $('footer').outerHeight() - $('.decor-default h6').outerHeight() - $('.answer-add').outerHeight() - 60
+            });
+            $('.friends-list').css({
+                height: $('.chat').outerHeight() + $('.decor-default h6').outerHeight() + 80
+            });
+        });
+         $(window).resize();
 
-</body>
-</html>
+         $scrollBottom = $(window).scrollTop() + $(".chat").height();
+         $(".chat").scrollTop($scrollBottom);
+
+     </script>
+ </body>
+ </html>

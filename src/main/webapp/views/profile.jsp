@@ -74,7 +74,8 @@
                             <div class="well">
                                 <p>${feedback.getAuthor().getFirstName()}</p>
                                 <a href="/profile/${feedback.getAuthor().getId()}">
-                                    <img src="/image/avatar/${feedback.getAuthor().getId()}" class="img-circle" height="65"
+                                    <img src="/image/avatar/${feedback.getAuthor().getId()}" class="img-circle"
+                                         height="65"
                                          width="65" alt="Avatar">
                                 </a>
                             </div>
@@ -93,7 +94,8 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="newFeedbackTextWindow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            <div class="modal fade" id="newFeedbackTextWindow" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel"
                  aria-hidden="true">
                 <div class="vertical-alignment-helper">
                     <div class="modal-dialog vertical-align-center">
@@ -108,9 +110,12 @@
                                 <div class="row">
                                     <form action="" method="">
                                         <div class="form-group">
-                                            <textarea id="newFeedbackText" name="newFeedback" placeholder="Add your feedback" style="text-align: justify" class="form-control"  rows="5" ></textarea>
+                                            <textarea id="newFeedbackText" name="newFeedback"
+                                                      placeholder="Add your feedback" style="text-align: justify"
+                                                      class="form-control" rows="5"></textarea>
                                         </div>
-                                        <button id="saveFeedback" type="button" class="btn btn-primary btn-md" style="float: right;">
+                                        <button id="saveFeedback" type="button" class="btn btn-primary btn-md"
+                                                style="float: right;">
                                             Save
                                         </button>
                                     </form>
@@ -138,7 +143,7 @@
         };
 
         $.ajax({
-            type:"POST",
+            type: "POST",
             url: "/addFeedback",
             data: JSON.stringify(data),
 //            dataType: "json",
@@ -148,21 +153,21 @@
 
         $("#newFeedbackTextWindow").modal("hide");
 
-        $("<div id='feedbackRow' class='row'> <div class='col-lg-12'>"+
-               "<div class='col-lg-3'>"+
-                "<div class='well'>"+
-                "<p>${currentSessionUser.firstName}</p>"+
-                "<a href='/profile/${currentSessionUser.id}'>"+
-                "<img src='/image/avatar/${currentSessionUser.id}' class='img-circle' height='65'"+
-                "width='65' alt='Avatar'> </a>"+
-                "</div>"+
-                "</div>"+
-                "<div class='col-lg-9'>"+
-                "<div class='well'>"+
-                "<p id='feedbackText' class='text-left'>"+newFeedbackTxt+"</p>"+
-                "</div>"+
-                "</div>"+
-                "</div>"+
+        $("<div id='feedbackRow' class='row'> <div class='col-lg-12'>" +
+                "<div class='col-lg-3'>" +
+                "<div class='well'>" +
+                "<p>${currentSessionUser.firstName}</p>" +
+                "<a href='/profile/${currentSessionUser.id}'>" +
+                "<img src='/image/avatar/${currentSessionUser.id}' class='img-circle' height='65'" +
+                "width='65' alt='Avatar'> </a>" +
+                "</div>" +
+                "</div>" +
+                "<div class='col-lg-9'>" +
+                "<div class='well'>" +
+                "<p id='feedbackText' class='text-left'>" + newFeedbackTxt + "</p>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
                 "</div>").insertBefore("#addFeedback");
 
     });

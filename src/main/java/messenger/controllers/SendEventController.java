@@ -1,6 +1,7 @@
 package messenger.controllers;
 
 
+import com.google.gson.Gson;
 import messenger.Database;
 import messenger.NewMessageListener;
 import model.User;
@@ -26,7 +27,7 @@ public class SendEventController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        String currentUserLogin = request.getParameter("login");
+//        String currentUserLogin = request.getParameter("login");
 
         AsyncContext asyncContext = request.startAsync();
         asyncContext.setTimeout(0);
@@ -38,18 +39,26 @@ public class SendEventController extends HttpServlet {
         User currentUser = (User)request.getSession().getAttribute("currentSessionUser");
         database.getWaitingUsers().add(currentUser);
 
-        NewMessageListener newMsgListener = new NewMessageListener(currentUser);
+        NewMessageListener newMsgListener = new NewMessageListener();
 
         database.registerObserver(newMsgListener);
 
-        newMsgListener.justWait();
+        newMsgListener.justWait(currentUser);
 
 
         HttpServletResponse peer = (HttpServletResponse) asyncContext.getResponse();
-        peer.getWriter().write(new JSONArray().put(newMsgListener.getCurrentUser().getFirstName() +" :"+ newMsgListener.getMessageText()).toString());
+        String message = new Gson().toJson(newMsgListener.getCurrentMessage());
+        response.getWriter().write(message);
+
+//        peer.getWriter().write(new JSONArray().put(newMsgListener.getCurrentUser().getFirstName() +" :"+ newMsgListener.getMessageText()).toString());
         peer.setStatus(HttpServletResponse.SC_OK);
         peer.setContentType("application/json");
         asyncContext.complete();
+
+
+//
+//
+//
 
     }
 }

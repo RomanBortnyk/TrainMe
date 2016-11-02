@@ -14,11 +14,8 @@ $( document ).ready(function() {
         });
     });
     $(window).resize();
-
-    $scrollBottom = $(window).scrollTop() + $(".chat").height();
-    $(".chat").scrollTop($scrollBottom);
-
-
+    
+    
 
     $(".chat-users").on("click", ".user", function(){
 
@@ -32,12 +29,51 @@ $( document ).ready(function() {
                 +$(this).find("#lastName").text());
 
         }
+
+        
     });
+
+
+    $("#inputMessageField").bind("enterKey", function () {
+        send();
+    });
+
+    $('#inputMessageField').keyup(function(e){
+        if(e.keyCode == 13)
+        {
+            $(this).trigger("enterKey");
+        }
+    });
+
+
+    
     
 
 });
 
 
+function send() {
+
+    var chatId = $(".activeUser").attr("id");
+
+    var messageField = $('#inputMessageField');
+
+    var message = {
+        chatId: chatId,
+        messageText: messageField.val()
+    };
+
+    $.ajax({
+        url:'/sendEvent',
+        data: message,
+        dataType:"json",
+        success:function(res){
+            console.log("message was sent");
+        }
+
+    });
+    messageField.val("");
+}
 
 function cleanMessageList() {
     $(".chat-body").empty()
@@ -78,6 +114,9 @@ function response(data) {
         $('.chat-body').append(large)
 
     });
+
+    var objDiv = document.getElementById("chat");
+    objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 

@@ -45,14 +45,6 @@
                             </div>
                         </c:forEach>
 
-                        <div class="user">
-                            <div class="avatar">
-                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                <div class="status off"></div>
-                            </div>
-                            <div class="name">User name</div>
-                            <div class="mood">User mood</div>
-                        </div>
                     </div>
                 </div>
 
@@ -62,8 +54,8 @@
         <div class="col-sm-9 col-xs-12 " style="outline: none;" tabindex="5001">
             <div class="col-inside-lg decor-default">
                 <h6 id="chatTitle"></h6>
-                <div class="chat">
-                    <div class="chat-body">
+                <div id="chat" class="chat">
+                    <div  class="chat-body">
                         <div class="answer left">
                             <div class="avatar">
                                 <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
@@ -116,7 +108,7 @@
                     </div>
                 </div>
                 <div class="answer-add">
-                    <input placeholder="Write a message">
+                    <input id="inputMessageField" placeholder="Write a message">
                     <span class="answer-btn answer-btn-1"></span>
                     <span class="answer-btn answer-btn-2"></span>
                 </div>
@@ -129,11 +121,55 @@
 
 <script type="text/javascript">
 
+    long_polling();
+
+    var userName;
+
+    function long_polling() {
+        $.ajax({
+            url: "/sendEventListenerRequest",
+            dataType: "json",
+            success: function (message) {
+                processMessage(message);
+                long_polling();
+            }
+        });
+    }
+
+    function processMessage(message) {
+
+        console.log(message.text);
+
+
+        var id=message.authorId;
+        var name = message.authorName;
+        var text = message.text;
+
+        var activeChatId = $(".activeUser").attr("id");
+
+        if (message.chatId.toString() === activeChatId ){
+
+            var messageBlock = '<div class="answer left"> ' +
+                    '<div class="avatar"> ' +
+                    '<img src="/image/avatar/'+id+'" alt="User name"> ' +
+                    '<div class="status offline"></div> ' +
+                    '</div> ' +
+                    '<div class="name">'+name+'</div> ' +
+                    '<div class="text">'+text+'</div> ' ;
+
+            $('.chat-body').append(messageBlock)
+
+        }
+
+        var objDiv = document.getElementById("chat");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+
+
 
 
 </script>
-
-
 
 </body>
 </html>

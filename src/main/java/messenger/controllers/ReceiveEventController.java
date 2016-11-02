@@ -29,6 +29,7 @@ public class ReceiveEventController extends HttpServlet {
         Database database = (Database)sctx.getAttribute("database");
 
         User messageAuthor = (User) request.getSession().getAttribute("currentSessionUser");
+
         Message receivedMessage = new Message();
         receivedMessage.setUser(messageAuthor);
         receivedMessage.setText(request.getParameter("messageText"));

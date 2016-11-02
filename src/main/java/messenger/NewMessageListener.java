@@ -8,21 +8,24 @@ import model.User;
  */
 public class NewMessageListener implements Observer {
 
-    private Message currentMessage;
-    private User currentUser;
+    private SmallerMessage currentMessage;
 
 //    private String chatId;
 
-    public NewMessageListener(User currentUser) {
-        this.currentUser = currentUser;
-    }
+//    public NewMessageListener(User currentUser) {
+//        this.currentUser = currentUser;
+//    }
 
     public void update(Message message) {
-                currentMessage = message;
+               currentMessage = new SmallerMessage();
+               currentMessage.setAuthorId(message.getUser().getId());
+               currentMessage.setAuthorName(message.getUser().getFirstName());
+               currentMessage.setText(message.getText());
+               currentMessage.setChatId(message.getChat().getId());
     }
 
 
-    public void justWait(){
+    public void justWait(User currentUser){
         try {
 
             synchronized (currentUser){
@@ -38,19 +41,19 @@ public class NewMessageListener implements Observer {
         return currentMessage.getText();
     }
 
-    public Message getCurrentMessage() {
+    public SmallerMessage getCurrentMessage() {
         return currentMessage;
     }
 
-    public void setCurrentMessage(Message currentMessage) {
+    public void setCurrentMessage(SmallerMessage currentMessage) {
         this.currentMessage = currentMessage;
     }
 
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
+//    public User getCurrentUser() {
+//        return currentUser;
+//    }
+//
+//    public void setCurrentUser(User currentUser) {
+//        this.currentUser = currentUser;
+//    }
 }

@@ -17,8 +17,6 @@ public class Database implements Observable {
     List<Observer> observers = new ArrayList<Observer>();
     List<User> waitingUsers = new ArrayList<User>();
 
-//    private String waitObject = "wait";
-
     public Database(){
 
     }
@@ -28,7 +26,6 @@ public class Database implements Observable {
 
         String name = Thread.currentThread().getName();
         System.out.println(name + " стартовал");
-//        currentMessage = message;
         MessageDao messageDao = new MessageDao();
         ChatDao chatDao = new ChatDao();
 
@@ -38,7 +35,6 @@ public class Database implements Observable {
             for (Chat chat: usersChats){
                 if ( chat.getId() == message.getChat().getId()){
                     synchronized (user) {
-                        messageDao.create(message);
                         notifyObservers(message);
                         user.notify();
                         System.out.println(name + " поток Notifier отработал");
@@ -48,6 +44,8 @@ public class Database implements Observable {
 
             }
         }
+
+        messageDao.create(message);
     }
 
     public List<Observer> getObservers() {

@@ -6,14 +6,16 @@ package messenger;
 public class SmallerMessage {
 
     private int authorId;
-    private String authorName;
+    private String authorFirstName;
+    private String authorLastName;
     private String text;
     private int chatId;
 
-    public SmallerMessage(int authorId, String text, String authorName) {
+    public SmallerMessage(int authorId, String text, String authorFirstName, String authorLastName) {
         this.authorId = authorId;
         this.text = text;
-        this.authorName = authorName;
+        this.authorFirstName = authorFirstName;
+        this.authorLastName = authorLastName;
     }
 
     public SmallerMessage() {
@@ -36,12 +38,20 @@ public class SmallerMessage {
         this.text = text;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getAuthorFirstName() {
+        return authorFirstName;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setAuthorFirstName(String authorFirstName) {
+        this.authorFirstName = authorFirstName;
+    }
+
+    public String getAuthorLastName() {
+        return authorLastName;
+    }
+
+    public void setAuthorLastName(String authorLastName) {
+        this.authorLastName = authorLastName;
     }
 
     public int getChatId() {

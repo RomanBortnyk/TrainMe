@@ -94,8 +94,10 @@
         var currentUserId = ${currentSessionUser.id};
 
         var id=message.authorId;
-        var name = message.authorName;
+        var firstName = message.authorFirstName;
+        var lastName = message.authorLastName;
         var text = message.text;
+        var chatId = message.chatId;
 
         var activeChatId = $(".activeUser").attr("id");
 
@@ -104,22 +106,18 @@
             var messageBlock = '<div class="answer left '+ (currentUserId === id ? "":"bkg")+'"> ' +
                     '<div class="avatar"> ' +
                     '<img src="/image/avatar/'+id+'" alt="User name"> ' +
-                    '<div class="status offline"></div> ' +
                     '</div> ' +
-                    '<div class="name">'+name+'</div> ' +
+                    '<div class="name">'+firstName+'</div> ' +
                     '<div class="text">'+text+'</div> ' ;
 
-            $('.chat-body').append(messageBlock)
+            $('.chat-body').append(messageBlock);
+
+            var objDiv = document.getElementById("chat");
+            objDiv.scrollTop = objDiv.scrollHeight;
 
         }
 
-        var objDiv = document.getElementById("chat");
-        objDiv.scrollTop = objDiv.scrollHeight;
     }
-
-
-
-
 
 </script>
 

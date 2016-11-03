@@ -47,8 +47,7 @@ $( document ).ready(function() {
 
     $("#sentIcon").on('click',send())
 
-
-
+    
 });
 
 
@@ -64,7 +63,7 @@ function send() {
         };
 
         $.ajax({
-            url:'/sendEvent',
+            url:'/sendEvent/message',
             data: message,
             dataType:"json",
             success:function(res){

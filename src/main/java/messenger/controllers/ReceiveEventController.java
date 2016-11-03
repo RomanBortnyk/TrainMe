@@ -2,7 +2,9 @@ package messenger.controllers;
 
 
 import dao.implementation.ChatDao;
+import dao.implementation.UserDao;
 import messenger.Database;
+import model.Chat;
 import model.Message;
 import model.User;
 
@@ -19,7 +21,7 @@ import java.util.Date;
 /**
  * Created by romab on 10/27/16.
  */
-@WebServlet("/sendEvent")
+@WebServlet("/sendEvent/*")
 public class ReceiveEventController extends HttpServlet {
 
     @Override
@@ -29,22 +31,38 @@ public class ReceiveEventController extends HttpServlet {
         Database database = (Database)sctx.getAttribute("database");
 
         User messageAuthor = (User) request.getSession().getAttribute("currentSessionUser");
+        UserDao userDao = new UserDao();
 
         Message receivedMessage = new Message();
+
         receivedMessage.setUser(messageAuthor);
         receivedMessage.setText(request.getParameter("messageText"));
 
         Date today = new java.util.Date();
         Timestamp timestamp = new Timestamp(today.getTime());
-        receivedMessage.setCreatedAt( timestamp);
+        receivedMessage.setCreatedAt(timestamp);
 
         ChatDao chatDao = new ChatDao();
-        receivedMessage.setChat(chatDao.read(Integer.valueOf(request.getParameter("chatId"))));
+
+        String pathParts [] = request.getPathInfo().split("/");
+
+        if (pathParts[1].equals("message")){
+
+            receivedMessage.setChat(chatDao.read(Integer.valueOf(request.getParameter("chatId"))));
+
+        }else {
+
+            int destUsrId = Integer.parseInt(request.getParameter("destinationUserId"));
+            if (chatDao.isExistByUsersId(messageAuthor.getId(), destUsrId)){
+                receivedMessage.setChat(chatDao.readByUsersIds(messageAuthor.getId(), destUsrId));
+            }else {
+
+                receivedMessage.setChat(chatDao.create(new Chat(messageAuthor,userDao.read(destUsrId))));
+            }
+        }
 
 
         database.addMessage(receivedMessage);
-
-//        System.out.println("sfd");
 
     }
 }

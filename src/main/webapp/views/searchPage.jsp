@@ -22,6 +22,7 @@
 <%@ page isELIgnored="false" %>
 <%@ include file="header.html" %>
 
+
     <div class="container">
     <div class="row">
       <h1 class="text-center" style="margin-top: 50px;">TrainMe Search</h1>

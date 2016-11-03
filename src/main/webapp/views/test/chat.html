@@ -8,159 +8,167 @@
     <script src="../../resources/js/jquery-3.1.1.min.js"></script>
     <script src="../../resources/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../resources/css/font-awesome.min.css">
+    <!--<script src="../../resources/js/jquery.nicescroll.min.js"></script>-->
 
-    <link rel="stylesheet" href="../../resources/css/conversations.css" >
+    <link rel="stylesheet" href="../../resources/css/conversations.css">
+
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Logo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/views/userPage.jsp"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> Messages</a></li>
-                    <li><a href="searchPage.jsp"> <i class="fa fa-search"></i> Search </a> </li>
-                    <li><a href="/logout"> <i class="fa fa-sign-out"></i> Log out</a></li>
-                </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a><span class="glyphicon glyphicon-user"></span> ${currentSessionUser.login}</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Logo</a>
         </div>
-    </nav>
-    <div class="content container-fluid bootstrap snippets">
-        <div class="row row-broken">
-            <div class="col-sm-3 col-xs-12">
-                <div class="col-inside-lg decor-default friends-list" style="outline: none;" tabindex="5000">
-                    <h6>Online</h6>
-                    <div class="chat">
-                        <div class="chat-users" style="padding-top: 10px;">
-                            <div class="user">
-                                <div class="avatar">
-                                    <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                    <div class="status off"></div>
-                                </div>
-                                <div class="name">User name</div>
-                                <div class="mood">User mood</div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/views/userPage.jsp"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> Messages</a></li>
+                <li><a href="searchPage.jsp"> <i class="fa fa-search"></i> Search </a></li>
+                <li><a href="/logout"> <i class="fa fa-sign-out"></i> Log out</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a><span class="glyphicon glyphicon-user"></span> ${currentSessionUser.login}</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="content container-fluid bootstrap snippets">
+    <div class="row row-broken">
+        <div class="col-sm-3 col-xs-12">
+            <div class="col-inside-lg decor-default friends-list" style="outline: none;" tabindex="5000">
+                <h6>Online</h6>
+                <div class="chat">
+                    <div class="chat-users" style="padding-top: 10px;">
+                        <div class="user">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
+                                <div class="status off"></div>
                             </div>
-                            <div class="user">
-                                <div class="avatar">
-                                    <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                    <div class="status online"></div>
-                                </div>
-                                <div class="name">User name</div>
-                                <div class="mood">User mood</div>
+                            <div class="name">User name</div>
+                            <div class="mood">User mood</div>
+                        </div>
+                        <div class="user">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                <div class="status online"></div>
                             </div>
-                            <div class="user">
-                                <div class="avatar">
-                                    <img src="http://bootdey.com/img/Content/avatar/avatar3.png" alt="User name">
-                                    <div class="status busy"></div>
-                                </div>
-                                <div class="name">User name</div>
-                                <div class="mood">User mood</div>
+                            <div class="name">User name</div>
+                            <div class="mood">User mood</div>
+                        </div>
+                        <div class="user">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar3.png" alt="User name">
+                                <div class="status busy"></div>
                             </div>
-                            <div class="user">
-                                <div class="avatar">
-                                    <img src="http://bootdey.com/img/Content/avatar/avatar4.png" alt="User name">
-                                    <div class="status offline"></div>
-                                </div>
-                                <div class="name">User name</div>
-                                <div class="mood">User mood</div>
+                            <div class="name">User name</div>
+                            <div class="mood">User mood</div>
+                        </div>
+                        <div class="user">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar4.png" alt="User name">
+                                <div class="status offline"></div>
                             </div>
+                            <div class="name">User name</div>
+                            <div class="mood">User mood</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9 col-xs-12 " style="outline: none;" tabindex="5001">
-                <div class="col-inside-lg decor-default">
-                    <h6>Mini Chat</h6>
-                    <div class="chat">
-                        <div class="chat-body">
-                            <div class="answer left">
-                                <div class="avatar">
-                                    <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                    <div class="status offline"></div>
-                                </div>
-                                <div class="name">Alexander Herthic</div>
-                                <div class="text">
-                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                                </div>
-                                <div class="time">5 min ago</div>
+        </div>
+        <div class="col-sm-9 col-xs-12 " style="outline: none;" tabindex="5001">
+            <div class="col-inside-lg decor-default">
+                <h6>Mini Chat</h6>
+                <div class="chat">
+                    <div class="chat-body">
+                        <div class="answer left">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
+                                <div class="status offline"></div>
                             </div>
+                            <div class="name">Alexander Herthic</div>
+                            <div class="text">
+                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
+                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            </div>
+                            <div class="time">5 min ago</div>
+                        </div>
 
-                            <div class="answer left bkg">
-                                <div class="avatar">
-                                    <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                    <div class="status offline"></div>
-                                </div>
-                                <div class="name">Alexander Herthic</div>
-                                <div class="text">
-                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                                </div>
-                                <div class="time">5 min ago</div>
+                        <div class="answer left bkg">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                <div class="status offline"></div>
                             </div>
-                            <div class="answer left bkg">
-                                <div class="avatar">
-                                    <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                    <div class="status offline"></div>
-                                </div>
-                                <div class="name">Alexander Herthic</div>
-                                <div class="text">
-                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                                </div>
-                                <div class="time">5 min ago</div>
+                            <div class="name">Alexander Herthic</div>
+                            <div class="text">
+                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
+                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
                             </div>
-                            <div class="answer left bkg">
-                                <div class="avatar">
-                                    <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                    <div class="status offline"></div>
-                                </div>
-                                <div class="name">Alexander Herthic</div>
-                                <div class="text">
-                                    Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                                </div>
-                                <div class="time">5 min ago</div>
+                            <div class="time">5 min ago</div>
+                        </div>
+                        <div class="answer left bkg">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                <div class="status offline"></div>
                             </div>
+                            <div class="name">Alexander Herthic</div>
+                            <div class="text">
+                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
+                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            </div>
+                            <div class="time">5 min ago</div>
+                        </div>
+                        <div class="answer left bkg">
+                            <div class="avatar">
+                                <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
+                                <div class="status offline"></div>
+                            </div>
+                            <div class="name">Alexander Herthic</div>
+                            <div class="text">
+                                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur
+                                adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            </div>
+                            <div class="time">5 min ago</div>
                         </div>
                     </div>
-                    <div class="answer-add">
-                        <input placeholder="Write a message">
-                        <span class="answer-btn answer-btn-1"></span>
-                        <span class="answer-btn answer-btn-2"></span>
-                    </div>
-                </div></div>
+                </div>
+                <div class="answer-add">
+                    <input placeholder="Write a message">
+                    <span class="answer-btn answer-btn-1"></span>
+                    <span class="answer-btn answer-btn-2"></span>
+                </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <footer class="container-fluid text-center">
-            <p>Train Me service</p>
-        </footer>
-        <script type="text/javascript">
+<footer class="container-fluid text-center">
+    <p>Train Me service</p>
+</footer>
 
-         $(".chat-users").on("click", ".user", function(){
-            $(".chat-users .user").removeClass("activeUser");
-            $(this).addClass("activeUser");
+<script type="text/javascript">
+
+    $(".chat-users").on("click", ".user", function () {
+        $(".chat-users .user").removeClass("activeUser");
+        $(this).addClass("activeUser");
+    });
+
+    $(window).resize(function(){
+        $h = $(window).outerHeight()
+        $('.chat').css({
+            height: $h - $('.navbar').outerHeight() - $('footer').outerHeight() - $('.decor-default h6').outerHeight() - $('.answer-add').outerHeight() - 60
         });
-
-         $(window).resize(function(){
-            $h = $(window).outerHeight()
-            $('.chat').css({
-                height: $h - $('.navbar').outerHeight() - $('footer').outerHeight() - $('.decor-default h6').outerHeight() - $('.answer-add').outerHeight() - 60
-            });
-            $('.friends-list').css({
-                height: $('.chat').outerHeight() + $('.decor-default h6').outerHeight() + 80
-            });
+        $('.friends-list').css({
+            height: $('.chat').outerHeight() + $('.decor-default h6').outerHeight() + 80
         });
-         $(window).resize();
+    });
 
-         $scrollBottom = $(window).scrollTop() + $(window).height();
-         $objDiv = $(".chat");
-         $objDiv.scrollTop($scrollBottom);
+    $(window).resize();
 
-     </script>
- </body>
- </html>
+    $scrollBottom = $(window).scrollTop() + $(".chat").height();
+    $(".chat").scrollTop($scrollBottom);
+
+</script>
+</body>
+</html>

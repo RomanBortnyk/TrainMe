@@ -20,11 +20,9 @@ public class MessageDao extends AbstractDao {
         return (Message)super.create(message);
     }
 
-
     public Message update(Message message) {
         return (Message) super.update(message);
     }
-
 
     public void delete(Message message) {
         super.delete(message);
@@ -43,7 +41,6 @@ public class MessageDao extends AbstractDao {
         List<Message> result;
         List<SmallerMessage> resultWithSmallerMessages = new ArrayList<SmallerMessage>();
 
-
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
@@ -55,7 +52,8 @@ public class MessageDao extends AbstractDao {
         session.getTransaction().commit();
 
         for (Message message: result){
-            resultWithSmallerMessages.add(new SmallerMessage(message.getUser().getId(),message.getText(), message.getUser().getFirstName()));
+            resultWithSmallerMessages.add(new SmallerMessage(message.getUser().getId(),message.getText(),
+                    message.getUser().getFirstName(),message.getUser().getLastName()));
         }
 
         return resultWithSmallerMessages;

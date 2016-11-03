@@ -29,8 +29,6 @@ public class Chat implements Item{
     }
 
 
-
-
     public void setUser1(User user1) {
         this.user1 = user1;
     }

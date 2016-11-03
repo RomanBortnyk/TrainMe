@@ -6,13 +6,16 @@ import dao.implementation.FeedbackDao;
 import dao.implementation.UserDao;
 import model.Feedback;
 import model.User;
+import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by romab on 10/27/16.
@@ -23,13 +26,11 @@ public class NewFeedbackServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         JsonObject data = new Gson().fromJson(request.getReader(), JsonObject.class);
 
         int destinationUserId = Integer.parseInt((data.get("destinationUserId").getAsString()));
         String newFeedbackText = data.get("newFeedbacktext").getAsString();
-
-        FeedbackDao feedbackDao = new FeedbackDao();
+        
         UserDao userDao = new UserDao();
         Feedback newFeedback = new Feedback();
 
@@ -37,8 +38,7 @@ public class NewFeedbackServlet extends HttpServlet {
         newFeedback.setUser(userDao.read(destinationUserId));
         newFeedback.setText(newFeedbackText);
 
-        feedbackDao.create(newFeedback);
-
+        
         response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
         response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
         response.getWriter().write("nothing");

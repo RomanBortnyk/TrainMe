@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ChatDao extends AbstractDao {
 
-    public Chat create (Chat chat){
+    public Chat create(Chat chat) {
 
         return (Chat) super.create(chat);
     }
@@ -27,7 +27,7 @@ public class ChatDao extends AbstractDao {
         return (Chat) super.read(Chat.class, id);
     }
 
-    public List<Chat> getUserChats (int userId){
+    public List<Chat> getUserChats(int userId) {
 
         List<Chat> result;
 
@@ -35,17 +35,17 @@ public class ChatDao extends AbstractDao {
         session.beginTransaction();
 
         Query q = session.createQuery("from Chat where user1.id =:userId " +
-                    "or user2.id =:userId");
+                "or user2.id =:userId");
 
-        q.setInteger("userId",userId);
+        q.setInteger("userId", userId);
 
         result = q.list();
 
         session.getTransaction().commit();
 
 
-        for (Chat chat : result){
-            if (chat.getUser1().getId()!=userId){
+        for (Chat chat : result) {
+            if (chat.getUser1().getId() != userId) {
                 User tempUser = chat.getUser1();
                 chat.setUser1(chat.getUser2());
                 chat.setUser2(tempUser);
@@ -56,6 +56,41 @@ public class ChatDao extends AbstractDao {
 
     }
 
+    public Chat readByUsersIds(int user1Id, int user2Id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query q = session.createQuery("from Chat where " +
+                "(user1.id = :user1Id and user2.id = :user2Id) or " +
+                "(user1.id = :user2Id and user2.id = :user1Id)");
+
+        q.setInteger("user1Id", user1Id);
+        q.setInteger("user2Id", user2Id);
+        Chat resultChat = (Chat) q.uniqueResult();
+
+        session.getTransaction().commit();
+
+        return resultChat;
+    }
+
+    public boolean isExistByUsersId(int user1Id, int user2Id) {
+
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query q = session.createQuery("from Chat where " +
+                "(user1.id = :user1Id and user2.id = :user2Id) or " +
+                "(user1.id = :user2Id and user2.id = :user1Id)");
+        q.setInteger("user1Id", user1Id);
+        q.setInteger("user2Id", user2Id);
+        Chat resultChat = (Chat) q.uniqueResult();
+
+        session.getTransaction().commit();
+        if (resultChat == null) return false;
+        else return true;
+
+    }
 
 
     public Item update(Item item) {

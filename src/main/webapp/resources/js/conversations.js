@@ -47,8 +47,7 @@ $( document ).ready(function() {
 
     $("#sentIcon").on('click',send())
 
-
-
+    
 });
 
 
@@ -64,7 +63,7 @@ function send() {
         };
 
         $.ajax({
-            url:'/sendEvent',
+            url:'/sendEvent/message',
             data: message,
             dataType:"json",
             success:function(res){
@@ -104,7 +103,7 @@ function response(data) {
     $.each(data, function(index, element) {
 
         var id=element.authorId;
-        var name = element.authorName;
+        var name = element.authorFirstName;
         var text = element.text;
 
         var large = '<div class="answer left '+ (activeUserName === name ? "bkg":"")+'"> ' +

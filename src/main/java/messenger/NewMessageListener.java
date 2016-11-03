@@ -10,29 +10,25 @@ public class NewMessageListener implements Observer {
 
     private SmallerMessage currentMessage;
 
-//    private String chatId;
-
-//    public NewMessageListener(User currentUser) {
-//        this.currentUser = currentUser;
-//    }
 
     public void update(Message message) {
-               currentMessage = new SmallerMessage();
-               currentMessage.setAuthorId(message.getUser().getId());
-               currentMessage.setAuthorName(message.getUser().getFirstName());
-               currentMessage.setText(message.getText());
-               currentMessage.setChatId(message.getChat().getId());
+        currentMessage = new SmallerMessage();
+        currentMessage.setAuthorId(message.getUser().getId());
+        currentMessage.setAuthorFirstName(message.getUser().getFirstName());
+        currentMessage.setAuthorLastName(message.getUser().getLastName());
+        currentMessage.setText(message.getText());
+        currentMessage.setChatId(message.getChat().getId());
     }
 
 
-    public void justWait(User currentUser){
+    public void justWait(User currentUser) {
         try {
 
-            synchronized (currentUser){
+            synchronized (currentUser) {
 
                 currentUser.wait();
             }
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -49,11 +45,5 @@ public class NewMessageListener implements Observer {
         this.currentMessage = currentMessage;
     }
 
-//    public User getCurrentUser() {
-//        return currentUser;
-//    }
-//
-//    public void setCurrentUser(User currentUser) {
-//        this.currentUser = currentUser;
-//    }
+
 }

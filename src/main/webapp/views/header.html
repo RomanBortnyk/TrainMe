@@ -6,7 +6,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
 
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/views/userPage.jsp"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/views/userPage.jsp"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="conversations.jsp"><i class="fa fa-envelope-o"></i> Messages</a></li>
                 <li><a href="searchPage.jsp"> <i class="fa fa-search"></i> Search </a> </li>
                 <li><a href="/logout"> <i class="fa fa-sign-out"></i> Log out</a></li>
@@ -19,3 +19,15 @@
         </div>
     </div>
 </nav>
+<script>
+    (function() {
+    var nav = document.getElementById('myNavbar'),
+        anchor = nav.getElementsByTagName('a'),
+        current = window.location.pathname.split('/')[1];
+        for (var i = 0; i < anchor.length; i++) {
+            if(anchor[i].href == current) {
+                anchor[i].className = "active";
+            }
+        }
+    })();
+</script>

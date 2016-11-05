@@ -20,7 +20,7 @@
     %>
     <div class="wrapper">
       <form class="form-signin">       
-        <h3>Error: <%= message%></h3>
+        <h3>Error:  <%= message%></h3>
         <button class="btn btn-lg btn-primary btn-block" type="submit"><a href="index.html">Back to the main page</a></button>   
       </form>
     </div>

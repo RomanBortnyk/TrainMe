@@ -51,7 +51,7 @@ public class AppTests {
 
         UserDao userDao = new UserDao();
 
-        assertTrue(userDao.isExist(userDao.read(8)));
+        assertTrue(userDao.isExist(userDao.read(6)));
 
     }
     

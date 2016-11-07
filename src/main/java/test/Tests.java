@@ -30,5 +30,13 @@ public class Tests {
 
     }
 
+    @Test
+    public void registerObserverTest(){
+        Database database = new Database();
+        NewMessageListener messageListener = new NewMessageListener();
+        database.registerObserver(messageListener);
+
+        assertEquals(database.getObservers().get(0),messageListener);
+    }
 
 }

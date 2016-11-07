@@ -59,7 +59,6 @@ public class DisciplineDao extends AbstractDao {
 
             return (Discipline) super.create(discipline);
 
-
     }
 
     public Discipline read (String name){

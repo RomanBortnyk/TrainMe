@@ -6,9 +6,11 @@ import messenger.Database;
 import messenger.NewMessageListener;
 import messenger.SmallerMessage;
 import model.Message;
+import model.User;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 
 /**
@@ -58,5 +60,8 @@ public class Tests {
         assertTrue(userDao.read("test","test","test").isEmpty());
 
     }
+
+
+
 
 }

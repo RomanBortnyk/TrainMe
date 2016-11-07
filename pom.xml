@@ -23,8 +23,6 @@
   </repositories>
 
 
-
-
   <dependencies>
 
     <dependency>
@@ -136,8 +134,6 @@
 
 
   </dependencies>
-
-
 
   <build>
     <finalName>trainMe</finalName>

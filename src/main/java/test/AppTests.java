@@ -9,6 +9,7 @@ import model.Message;
 import model.User;
 import org.junit.Test;
 
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
@@ -16,7 +17,7 @@ import static org.mockito.Mockito.mock;
 /**
  * Created by romab on 11/7/16.
  */
-public class Tests {
+public class AppTests {
 
     // simple tests
 
@@ -60,8 +61,5 @@ public class Tests {
         assertTrue(userDao.read("test","test","test").isEmpty());
 
     }
-
-
-
 
 }

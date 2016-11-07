@@ -43,5 +43,13 @@ public class Tests {
         assertEquals("Jack",userDao.read(8).getFirstName());
 
     }
+    @Test
+    public void isUserExistTest(){
+
+        UserDao userDao = new UserDao();
+
+        assertTrue(userDao.isExist(userDao.read(8)));
+
+    }
 
 }

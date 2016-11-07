@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
  */
 public class ShutdownHookListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
+
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {

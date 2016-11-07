@@ -25,7 +25,6 @@ public class Tests {
         MessageDao dao = new MessageDao();
 
         listener.update(dao.read(256));
-
         assertNotNull(listener.getCurrentMessage());
 
     }
@@ -37,6 +36,5 @@ public class Tests {
         database.registerObserver(messageListener);
         assertEquals(database.getObservers().get(0),messageListener);
     }
-
 
 }

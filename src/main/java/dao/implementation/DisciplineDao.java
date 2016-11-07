@@ -1,4 +1,4 @@
-package dao.implementation;//package dao.implementation;
+package dao.implementation;
 
 import model.Avatar;
 import model.Discipline;

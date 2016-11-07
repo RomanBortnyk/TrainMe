@@ -36,5 +36,12 @@ public class Tests {
         database.registerObserver(messageListener);
         assertEquals(database.getObservers().get(0),messageListener);
     }
+    
+    @Test
+    public void readUserFromDatabaseTest(){
+        UserDao userDao = new UserDao();
+        assertEquals("Jack",userDao.read(8).getFirstName());
+
+    }
 
 }

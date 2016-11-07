@@ -51,5 +51,12 @@ public class Tests {
         assertTrue(userDao.isExist(userDao.read(8)));
 
     }
+    
+    @Test
+    public void readUserByFirstAndLastNameAndType(){
+        UserDao userDao = new UserDao();
+        assertTrue(userDao.read("test","test","test").isEmpty());
+
+    }
 
 }

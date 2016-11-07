@@ -8,12 +8,21 @@
   <name>trainMe Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
+  <scm>
+    <connection>scm:git:https://github.com/RomanBortnyk/TrainMe>.git</connection>
+    <developerConnection>scm:git:https://github.com/RomanBortnyk/TrainMe.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/RomanBortnyk/TrainMe.git</url>
+  </scm>
+
   <repositories>
     <repository>
       <id>JBoss repository</id>
       <url>http://repository.jboss.com/maven2/</url>
     </repository>
   </repositories>
+
+
 
 
   <dependencies>
@@ -126,11 +135,43 @@
     </dependency>
 
 
-
   </dependencies>
+
 
 
   <build>
     <finalName>trainMe</finalName>
+
+    <plugins>
+
+      <plugin>
+        <groupId>com.lukegb.mojo</groupId>
+        <artifactId>gitdescribe-maven-plugin</artifactId>
+        <version>3.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>gitdescribe</goal>
+            </goals>
+            <id>git-describe</id>
+            <phase>initialize</phase>
+            <configuration>
+              <outputPrefix></outputPrefix>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+
+    </resources>
+
   </build>
 </project>

@@ -1,4 +1,4 @@
-package dao.implementation;//package dao.implementation;
+package dao.implementation;
 
 import model.Avatar;
 import model.Discipline;
@@ -58,7 +58,6 @@ public class DisciplineDao extends AbstractDao {
             discipline.setIcon(bFile);
 
             return (Discipline) super.create(discipline);
-
 
     }
 

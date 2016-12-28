@@ -70,7 +70,6 @@ public class ModifyUsersDataServlet extends HttpServlet {
                     currentDiscList.remove(linkToRemove);
                     discUsrLinkDao.delete(linkToRemove);
                 }
-
             }
         }
 
@@ -86,7 +85,6 @@ public class ModifyUsersDataServlet extends HttpServlet {
         FileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         File uploadedFile = null;
-
 
         try {
 

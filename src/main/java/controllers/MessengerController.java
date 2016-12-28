@@ -47,9 +47,6 @@ public class MessengerController extends HttpServlet {
         if (pathParts[1].equals("chatMessages")) {
             int chatId = Integer.parseInt(pathParts[2]);
 
-
-//            ArrayList<Message> result = new ArrayList<String>();
-
             MessageDao messageDao = new MessageDao();
 
 

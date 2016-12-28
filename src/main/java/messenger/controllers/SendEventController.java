@@ -57,9 +57,6 @@ public class SendEventController extends HttpServlet {
 
         database.getWaitingUsers().remove(currentUser);
         database.getObservers().remove(newMsgListener);
-//
-//
-//
 
     }
 }

@@ -61,7 +61,6 @@ public class ReceiveEventController extends HttpServlet {
             }
         }
 
-
         database.addMessage(receivedMessage);
 
     }

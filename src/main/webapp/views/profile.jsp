@@ -230,7 +230,6 @@
             messageField.val("");
         }
 
-
     })
 
 </script>

@@ -23,7 +23,7 @@ public class TestServlet extends HttpServlet {
         RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/jsp/result.jsp");
         view.forward(request, response);
 
-        //something sdfrynrt ytr
+        //something sdfrynrt ytrgfh
         //sdf sd fsdfsfd
 
 
